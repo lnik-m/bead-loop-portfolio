@@ -65,20 +65,18 @@ export const EditorSettings = ({
           error={error}
           ref={focusTrapRef}
           disabled={!isEditable}
-          label={localize('dashboard.editor.labels.title')}
+          label={localize('editor.labels.title')}
           value={template.title}
           onChange={({ currentTarget }) => {
             setError(
-              !currentTarget.value
-                ? localize('dashboard.editor.labels.emptyTitle')
-                : ''
+              !currentTarget.value ? localize('editor.labels.emptyTitle') : ''
             )
             updateTemplate({ title: currentTarget.value })
           }}
         />
         <Select
           disabled={!isEditable}
-          label={localize('dashboard.editor.labels.schemaType')}
+          label={localize('editor.labels.schemaType')}
           checkIconPosition="right"
           value={schemaType}
           data={schemaTypes}
@@ -90,7 +88,7 @@ export const EditorSettings = ({
             disabled={!isEditable}
             min={1}
             max={50}
-            label={localize('dashboard.editor.labels.rows')}
+            label={localize('editor.labels.rows')}
             value={rows}
             onChange={v => updateRows(+v)}
           />
@@ -98,7 +96,7 @@ export const EditorSettings = ({
             disabled={!isEditable}
             min={1}
             max={50}
-            label={localize('dashboard.editor.labels.columns')}
+            label={localize('editor.labels.columns')}
             value={columns}
             onChange={v => updateColumns(+v)}
           />
@@ -113,14 +111,14 @@ export const EditorSettings = ({
             saveTemplate(isNew).then(() => navigate(routes.myTemplates))
           }}
         >
-          {localize('dashboard.editor.buttons.save')}
+          {localize('editor.buttons.save')}
         </Button>
         <Button
           theme="dark"
           onClick={() => exportSchemaAction(schemaRef)}
           disabled={!!error}
         >
-          {localize('dashboard.editor.buttons.export')}
+          {localize('editor.buttons.export')}
         </Button>
       </Flex>
     </Flex>

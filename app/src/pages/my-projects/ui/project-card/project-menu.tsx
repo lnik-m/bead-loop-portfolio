@@ -24,7 +24,7 @@ export const ProjectMenu = ({ projectId }: Props) => {
       <Modal
         opened={isModalOpened}
         onClose={closeModal}
-        title={localize('dashboard.projects.deleteModal.title')}
+        title={localize('projects.deleteModal.title')}
       >
         <DeleteModal projectId={projectId} closeAction={closeModal} />
       </Modal>
@@ -63,7 +63,7 @@ export const ProjectMenu = ({ projectId }: Props) => {
               color="red"
               leftSection={<IconTrash size={14} />}
             >
-              {localize('dashboard.projects.buttons.delete')}
+              {localize('projects.buttons.delete')}
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

@@ -121,6 +121,7 @@ export class ProjectManager {
     console.debug(`DB: Update project with id ${id}`)
     await delay()
 
+    // TODO add logic with updating materials & progress
     const projects = this.getProjectsFromStorage() || []
     const projectsInput = projects.map(project => {
       if (project.id !== id) return project

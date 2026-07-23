@@ -5,7 +5,6 @@ import projectsEN from './projects'
 
 const messages = {
   dashboard: dashboardEN,
-  // TODO refactor
   editor: editorEN,
   myTemplates: myTemplatesEN,
   projects: projectsEN

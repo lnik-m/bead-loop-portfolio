@@ -27,13 +27,11 @@ export const ProjectInfo = () => {
       <Flex column>
         <TextInput
           error={error}
-          label={localize('dashboard.projects.labels.title')}
+          label={localize('projects.labels.title')}
           value={title}
           onChange={({ currentTarget }) => {
             setError(
-              !currentTarget.value
-                ? localize('dashboard.projects.labels.emptyTitle')
-                : ''
+              !currentTarget.value ? localize('projects.labels.emptyTitle') : ''
             )
             updateProject({ title: currentTarget.value })
           }}

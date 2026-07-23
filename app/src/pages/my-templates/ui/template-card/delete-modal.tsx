@@ -13,10 +13,10 @@ export const DeleteModal = ({ templateId, closeAction }: Props) => {
   const { deleteTemplate } = useMyTemplates()
   return (
     <Flex column isGap className="gap-12">
-      {localize('dashboard.myTemplates.deleteModal.confirm')}
+      {localize('myTemplates.deleteModal.confirm')}
       <Flex className="justify-end">
         <Button theme="dark" onClick={closeAction}>
-          {localize('dashboard.myTemplates.buttons.cancel')}
+          {localize('myTemplates.buttons.cancel')}
         </Button>
         <Button
           theme="warn"
@@ -25,7 +25,7 @@ export const DeleteModal = ({ templateId, closeAction }: Props) => {
             closeAction()
           }}
         >
-          {localize('dashboard.myTemplates.buttons.delete')}
+          {localize('myTemplates.buttons.delete')}
         </Button>
       </Flex>
     </Flex>
