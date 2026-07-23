@@ -35,9 +35,7 @@ const AppLayoutContent = () => {
         <Links />
       </head>
       <body>
-        <div
-          className={`${theme} bg-bead-loop-light-70 dark:bg-bead-loop-dark-20`}
-        >
+        <div className="bg-bead-loop-light-70 dark:bg-bead-loop-dark-20">
           <MantineProvider
             forceColorScheme={theme}
             colorSchemeManager={colorSchemeManager}
