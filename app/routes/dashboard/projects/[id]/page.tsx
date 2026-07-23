@@ -17,6 +17,7 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
 export default function ProjectPage() {
   const { getProjects } = useLoaderData<typeof clientLoader>()
 
+  // TODO navigate with state
   return (
     <Suspense fallback={<ProjectsSkeleton />}>
       <Await

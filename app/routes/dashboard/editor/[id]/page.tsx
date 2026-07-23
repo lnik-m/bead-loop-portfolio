@@ -17,6 +17,7 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
 export default function EditorTemplatePage() {
   const { getTemplates } = useLoaderData<typeof clientLoader>()
 
+  // TODO navigate with state
   return (
     <Suspense fallback={<EditorSkeleton />}>
       <Await

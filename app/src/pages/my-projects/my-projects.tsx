@@ -6,6 +6,7 @@ import { ProjectCard } from './ui'
 export const MyProjects = () => {
   const { localize } = useI18n()
   const { projects } = useProjects()
+  // TODO empty state
   return (
     <>
       <Divider label={localize('projects.tabs.current')} className="mb-2" />
