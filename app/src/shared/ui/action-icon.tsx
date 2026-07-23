@@ -23,7 +23,7 @@ export const ActionIcon = ({
         className={`flex items-center justify-center
             ${
               isActive
-                ? 'bg-beadLoop-lilac hover:bg-beadLoop-lilac05 text-support-50'
+                ? 'bg-bead-loop-lilac hover:bg-bead-loop-lilac-05 text-support-50'
                 : 'bg-support-50 text-secondary-800'
             } 
             active:translate-y-0.5

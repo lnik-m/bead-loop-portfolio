@@ -16,19 +16,19 @@ export const AddButton = ({ to, label }: Props) => {
       flex flex-col items-center justify-center gap-1
       w-[268px] h-[208px]
       rounded-md border-[4px]
-      bg-support-50 dark:bg-beadLoop-gray
-      border-beadLoop-light50 dark:border-beadLoop-gray20
+      bg-support-50 dark:bg-bead-loop-gray
+      border-bead-loop-light-50 dark:border-bead-loop-gray-20
      "
     >
       <IconCirclePlusFilled
         size={54}
-        className="text-beadLoop-blueLight dark:text-beadLoop-blueLight
+        className="text-bead-loop-blue-light dark:text-bead-loop-blue-light
         opacity-70 group-hover:opacity-100"
       />
       <p
         className="opacity-50 group-hover:opacity-70
-      text-beadLoop-black dark:text-beadLoop-blueLight
-      group-hover:text-beadLoop-black dark:group-hover:text-beadLoop-blueLight"
+      text-bead-loop-black dark:text-bead-loop-blue-light
+      group-hover:text-bead-loop-black dark:group-hover:text-bead-loop-blue-light"
       >
         {label}
       </p>

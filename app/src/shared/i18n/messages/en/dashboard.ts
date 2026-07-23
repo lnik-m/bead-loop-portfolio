@@ -1,6 +1,5 @@
 const messages = {
   navbar: {
-    account: 'Account',
     myTemplates: 'Templates',
     myProjects: 'Projects'
   },

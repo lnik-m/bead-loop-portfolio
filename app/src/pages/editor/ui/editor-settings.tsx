@@ -57,7 +57,7 @@ export const EditorSettings = ({
     <Flex
       column
       className="col-span-2
-      bg-beadLoop-light50 dark:bg-beadLoop-gray20
+      bg-bead-loop-light-50 dark:bg-bead-loop-gray-20
        h-full rounded-2xl p-4 text-[15px] justify-between"
     >
       <Flex column>

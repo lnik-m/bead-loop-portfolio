@@ -18,15 +18,15 @@ export const ProjectCard = ({ project }: Props) => {
     <Flex
       className="w-[268px] h-[208px] gap-0
       rounded-md border-[4px]
-    bg-beadLoop-light50 dark:bg-beadLoop-gray20
-    border-beadLoop-light50 dark:border-beadLoop-gray20"
+    bg-bead-loop-light-50 dark:bg-bead-loop-gray-20
+    border-bead-loop-light-50 dark:border-bead-loop-gray-20"
       isGap
       column
     >
       <Link to={`${routes.project}${project.id}`}>
         <div
           className="justify-center *:h-[144px]
-        bg-support-50 dark:bg-beadLoop-gray
+        bg-support-50 dark:bg-bead-loop-gray
         rounded-t overflow-hidden"
         >
           <TemplateViews className="scale-[0.3]" schema={schema} type={type} />
@@ -38,7 +38,7 @@ export const ProjectCard = ({ project }: Props) => {
           className="absolute top-[-6px] right-0"
         />
         <Flex
-          className="gap-0 text-beadLoop-dark dark:text-beadLoop-blueLight"
+          className="gap-0 text-bead-loop-dark dark:text-bead-loop-blue-light"
           column
           isGap
         >

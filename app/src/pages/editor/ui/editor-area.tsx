@@ -38,7 +38,7 @@ export const EditorArea = ({ schemaRef }: Props) => {
   return (
     <Flex
       column
-      className="col-span-5 bg-beadLoop-light50 dark:bg-beadLoop-gray20 rounded-2xl p-4"
+      className="col-span-5 bg-bead-loop-light-50 dark:bg-bead-loop-gray-20 rounded-2xl p-4"
     >
       <Flex className="justify-between">
         <Flex>

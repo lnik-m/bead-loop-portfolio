@@ -7,14 +7,14 @@ export const ProjectProgress = ({ progress, className }: Props) => {
   return (
     <div className={`w-full h-1.5 bg-support-200 ${className}`}>
       <div
-        className={`absolute top-0 left-0 h-1.5 bg-beadLoop-green`}
+        className={`absolute top-0 left-0 h-1.5 bg-bead-loop-green`}
         style={{
           width: `${progress}%`
         }}
       >
         <div
           className={`text-xs px-1 w-fit rounded-sm
-          bg-white text-beadLoop-dark 
+          bg-white text-bead-loop-dark 
           ml-auto mt-[-4px] shadow-md`}
         >
           {progress}%

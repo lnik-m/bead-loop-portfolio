@@ -26,10 +26,6 @@ export const Navbar = ({ className }: Props) => {
       {
         route: routes.myProjects,
         text: localize('dashboard.navbar.myProjects')
-      },
-      {
-        route: routes.account,
-        text: localize('dashboard.navbar.account')
       }
     ]
   }, [localize])

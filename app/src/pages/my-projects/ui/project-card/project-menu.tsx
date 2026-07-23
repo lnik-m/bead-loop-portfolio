@@ -49,7 +49,7 @@ export const ProjectMenu = ({ projectId }: Props) => {
             >
               <IconDots
                 size={24}
-                className="stroke-beadLoop-dark dark:stroke-beadLoop-blueLight"
+                className="stroke-bead-loop-dark dark:stroke-bead-loop-blue-light"
               />
             </ActionIcon>
           </Menu.Target>

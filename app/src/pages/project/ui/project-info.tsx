@@ -22,7 +22,7 @@ export const ProjectInfo = () => {
   return (
     <Flex
       column
-      className="bg-beadLoop-light50 dark:bg-beadLoop-gray20 h-full rounded-2xl p-4 text-[15px] justify-between"
+      className="bg-bead-loop-light-50 dark:bg-bead-loop-gray-20 h-full rounded-2xl p-4 text-[15px] justify-between"
     >
       <Flex column>
         <TextInput

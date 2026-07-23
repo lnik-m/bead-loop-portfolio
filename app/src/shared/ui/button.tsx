@@ -34,13 +34,13 @@ export const Button = ({
       break
     default:
       colors =
-        'bg-beadLoop-lilac05 hover:bg-beadLoop-lilac disabled:bg-beadLoop-lilac05'
+        'bg-bead-loop-lilac-05 hover:bg-bead-loop-lilac disabled:bg-bead-loop-lilac-05'
   }
   return (
     <>
       <button
         className={`flex justify-center items-center gap-1 flex-nowrap
-         text-bold text-beadLoop-light05 ${colors}
+         text-bold text-bead-loop-light-05 ${colors}
          p-2 rounded
          active:translate-y-0.5 group/tooltip
          disabled:cursor-not-allowed

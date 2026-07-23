@@ -28,7 +28,7 @@ export const ProjectArea = () => {
   return (
     <Flex
       column
-      className="col-span-2 bg-beadLoop-light50 dark:bg-beadLoop-gray20 h-full rounded-2xl p-4"
+      className="col-span-2 bg-bead-loop-light-50 dark:bg-bead-loop-gray-20 h-full rounded-2xl p-4"
     >
       <Flex className="justify-between">
         <p className="text-[18px] font-medium truncate">{title}</p>
