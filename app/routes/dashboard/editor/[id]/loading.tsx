@@ -1,6 +1,6 @@
 import { Flex } from 'shared/ui'
 
-export const Loading = () => {
+export const EditorSkeleton = () => {
   return (
     <Flex className="grid grid-cols-7 h-full gap-6">
       <Flex

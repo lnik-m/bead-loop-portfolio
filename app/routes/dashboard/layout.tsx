@@ -5,14 +5,14 @@ import { actions } from 'actions'
 import { DashboardLayout } from 'widgets'
 import { Flex } from 'shared/ui'
 
-export async function clientLoader() {
+export async function loader() {
   const templates = await actions.templates.get.byUser()
   const projects = await actions.projects.get.byUser()
   return { templates, projects }
 }
 
 export default function Layout() {
-  const { templates, projects } = useLoaderData<typeof clientLoader>()
+  const { templates, projects } = useLoaderData<typeof loader>()
   return (
     <Suspense
       fallback={

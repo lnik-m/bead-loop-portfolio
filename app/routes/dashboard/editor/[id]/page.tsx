@@ -1,33 +1,16 @@
 import { Suspense } from 'react'
 import { useLoaderData } from 'react-router'
 import { actions } from 'actions'
-import type { Template } from 'core/collections'
 import { Editor } from 'pages'
-import { Loading } from './loading'
+import { EditorSkeleton } from './loading'
 
 type LoaderParams = {
   templateId: string
 }
 
-export async function clientLoader({ params }: { params: LoaderParams }) {
+export async function loader({ params }: { params: LoaderParams }) {
   if (!params.templateId) {
     throw new Error('Template id is required')
-  }
-  if (params.templateId === 'new') {
-    return {
-      template: {
-        id: '',
-        title: 'New template',
-        type: 'loom',
-        schema: [
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', ''],
-          ['', '', '', '', '', '']
-        ],
-        isPublished: false
-      } as Template
-    }
   }
 
   let template
@@ -44,11 +27,11 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
 }
 
 export default function EditorTemplatePage() {
-  const { template, errorMessage } = useLoaderData<typeof clientLoader>()
+  const { template, errorMessage } = useLoaderData<typeof loader>()
 
   if (!template) return <div>TODO: Template Not Found {errorMessage}</div>
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<EditorSkeleton />}>
       <Editor template={template} isNew={template.id === ''} />
     </Suspense>
   )

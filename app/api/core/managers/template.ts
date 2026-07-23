@@ -1,4 +1,5 @@
 import type { Template } from 'core/collections'
+import type { SchemaType } from '../collections/template'
 
 type TemplateRes = {
   id: Template['id']
@@ -15,6 +16,19 @@ export type UpdateTemplateArgs = Pick<
 >
 export type DeleteTemplateArgs = {
   ids: Template['id'][]
+}
+
+const NEW_TEMPLATE = {
+  id: '',
+  title: 'New template',
+  type: 'loom' as SchemaType,
+  schema: [
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', '']
+  ],
+  isPublished: false
 }
 
 export class TemplateManager {
@@ -37,13 +51,12 @@ export class TemplateManager {
 
   async getById(id: string): Promise<Template> {
     console.debug(`DB: Fetch template with id ${id}`)
-
     // TODO getById from localStorage
     // const res = await db
     //   .select()
     //   .from(pgTemplates)
     //   .where(eq(pgTemplates.id, id))
-    const res: TemplateRes[] = []
+    const res: TemplateRes[] = id === 'new' ? [NEW_TEMPLATE] : []
 
     const template = this.toDto(res)?.[0]
     if (!template) throw new Error(`Template with id ${id} not found`)

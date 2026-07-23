@@ -2,13 +2,13 @@ import { Suspense } from 'react'
 import { useLoaderData } from 'react-router'
 import { actions } from 'actions'
 import { Project } from 'pages'
-import { Loading } from './loading'
+import { ProjectsSkeleton } from './loading'
 
 type LoaderParams = {
   projectId: string
 }
 
-export async function clientLoader({ params }: { params: LoaderParams }) {
+export async function loader({ params }: { params: LoaderParams }) {
   if (!params.projectId) {
     throw new Error('Project id is required')
   }
@@ -26,11 +26,11 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
 }
 
 export default function ProjectPage() {
-  const { project, errorMessage } = useLoaderData<typeof clientLoader>()
+  const { project, errorMessage } = useLoaderData<typeof loader>()
 
   if (!project) return <div>TODO: Project Not Found {errorMessage}</div>
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<ProjectsSkeleton />}>
       <Project project={project} />
     </Suspense>
   )
