@@ -1,29 +1,36 @@
 import { Suspense } from 'react'
-import { Outlet, useLoaderData } from 'react-router'
-import { Loader } from '@mantine/core'
+import { Await, Outlet, useLoaderData } from 'react-router'
 import { actions } from 'actions'
 import { DashboardLayout } from 'widgets'
-import { Flex } from 'shared/ui'
+import { ErrorFallback } from 'shared/ui'
+import { DashboardSkeleton } from './loading'
 
-export async function loader() {
-  const templates = await actions.templates.get.byUser()
-  const projects = await actions.projects.get.byUser()
-  return { templates, projects }
+export async function clientLoader() {
+  const getData = Promise.all([
+    actions.templates.get.byUser(),
+    actions.projects.get.byUser()
+  ])
+  return { getData }
 }
 
 export default function Layout() {
-  const { templates, projects } = useLoaderData<typeof loader>()
+  const { getData } = useLoaderData<typeof clientLoader>()
   return (
-    <Suspense
-      fallback={
-        <Flex className="items-end justify-center h-1/2 mt-[50px]">
-          <Loader color="accent" size="lg" />
-        </Flex>
-      }
-    >
-      <DashboardLayout templates={templates || []} projects={projects || []}>
-        <Outlet />
-      </DashboardLayout>
+    <Suspense fallback={<DashboardSkeleton />}>
+      <Await
+        resolve={getData}
+        errorElement={<ErrorFallback />}
+        children={([templates, projects]) => {
+          return (
+            <DashboardLayout
+              templates={templates || []}
+              projects={projects || []}
+            >
+              <Outlet />
+            </DashboardLayout>
+          )
+        }}
+      />
     </Suspense>
   )
 }
