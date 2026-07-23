@@ -1,0 +1,16 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "@typescript-eslint/no-namespace": "off",
+    "lines-around-directive": "off",
+    "import/order": "off",
+    "default-case-last": "error",
+    "no-empty-function": "error",
+    "no-unneeded-ternary": "error",
+    "require-await": "warn",
+    "no-use-before-define": "error",
+    "no-unsafe-optional-chaining": "error",
+    "no-unreachable": "error",
+    "no-duplicate-imports": "warn"
+  }
+}
