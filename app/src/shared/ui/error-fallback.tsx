@@ -1,6 +1,5 @@
 import { useAsyncError } from 'react-router'
-
-const UNEXPECTED_ERROR = 'An unexpected error occurred'
+import { UNEXPECTED_ERROR } from '../constants'
 
 export const ErrorFallback = () => {
   const error = useAsyncError() as Error
