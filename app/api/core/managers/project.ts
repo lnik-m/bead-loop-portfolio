@@ -1,5 +1,7 @@
 import type { Template, Project } from 'core/collections'
 import { getMaterials } from 'api/utils'
+import { UNEXPECTED_ERROR } from 'shared/constants'
+import { delay } from 'shared/utils'
 
 type ProjectRes = {
   id: Project['id']
@@ -22,6 +24,8 @@ export type DeleteProjectArgs = {
 }
 
 export class ProjectManager {
+  private static readonly STORAGE_KEY = 'bead-loop-projects'
+
   toDto(res: ProjectRes[]): Project[] {
     return res.map(project => ({
       id: project.id,
@@ -33,14 +37,41 @@ export class ProjectManager {
     }))
   }
 
+  private getProjectsFromStorage(): Project[] {
+    console.debug('LS: get projects')
+    if (typeof window === 'undefined') return []
+
+    try {
+      const data = localStorage.getItem(ProjectManager.STORAGE_KEY)
+      return data ? this.toDto(JSON.parse(data) as ProjectRes[]) : []
+    } catch (error) {
+      console.error(error)
+      const errorMessage =
+        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      throw new Error(`LS: get projects failed ${errorMessage}`)
+    }
+  }
+
+  private saveProjectsToStorage(projects: Project[]): void {
+    console.debug('LS: save projects')
+    if (typeof window === 'undefined') return
+
+    try {
+      localStorage.setItem(ProjectManager.STORAGE_KEY, JSON.stringify(projects))
+    } catch (error) {
+      console.error(error)
+      const errorMessage =
+        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      throw new Error(`LS: save projects failed ${errorMessage}`)
+    }
+  }
+
   async getById(id: string): Promise<Project> {
     console.debug(`DB: Fetch project with id ${id}`)
+    await delay()
 
-    // TODO getById from localStorage
-    // const res = await db.select().from(pgProjects).where(eq(pgProjects.id, id))
-    const res: ProjectRes[] = []
-
-    const project = this.toDto(res)?.[0]
+    const res = this.getProjectsFromStorage() || []
+    const project = res.find(project => project.id === id)
     if (!project) throw new Error(`Project with id ${id} not found`)
 
     return project
@@ -48,20 +79,16 @@ export class ProjectManager {
 
   async getByUser(): Promise<Project[]> {
     console.debug(`DB: Fetch user projects`)
+    await delay()
 
-    // TODO getByUser from localStorage
-    // const res = await db
-    //   .select()
-    //   .from(pgProjects)
-    //   .where(eq(pgProjects.userId, this.userId))
-    const res: ProjectRes[] = []
-    return this.toDto(res)
+    return this.getProjectsFromStorage() || []
   }
 
   async createProject({
     template
   }: CreateProjectArgs): Promise<Project | undefined> {
     console.debug(`DB: Create new project with templateId ${template.id}`)
+    await delay()
 
     const schema = template.schema.map(row =>
       row.map(color => ({ color, isBeaded: false }))
@@ -69,23 +96,22 @@ export class ProjectManager {
     const materials = getMaterials(schema)
     if (!materials.length) return
 
-    // TODO createProject in localStorage
-    // const res = await db
-    //   .insert(pgProjects)
-    //   .values({
-    //     title: 'New Project',
-    //     userId: this.userId,
-    //     userName: this.userName,
-    //     type: template.type,
-    //     // TODO toJSON
-    //     schema: JSON.parse(JSON.stringify(schema)),
-    //     materials: JSON.parse(JSON.stringify(materials)),
-    //     progress: 0
-    //   })
-    //   .returning()
-    const res: ProjectRes[] = []
+    const newId = crypto.randomUUID()
+    const projectInput = [
+      ...(this.getProjectsFromStorage() || []),
+      {
+        id: newId,
+        title: 'New Project',
+        type: template.type,
+        schema,
+        materials,
+        progress: 0
+      }
+    ]
+    this.saveProjectsToStorage(projectInput)
 
-    const project = this.toDto(res)?.[0]
+    const res = this.getProjectsFromStorage() || []
+    const project = res.find(project => project.id === newId)
     if (!project) throw new Error('Project not created')
 
     return project
@@ -93,21 +119,21 @@ export class ProjectManager {
 
   async updateProject({ id, ...data }: UpdateProjectArgs): Promise<Project> {
     console.debug(`DB: Update project with id ${id}`)
+    await delay()
 
-    // TODO updateProject in localStorage
-    // const res = await db
-    //   .update(pgProjects)
-    //   .set({
-    //     ...data,
-    //     // TODO toJSON
-    //     schema: JSON.parse(JSON.stringify(data.schema)),
-    //     materials: JSON.parse(JSON.stringify(data.materials))
-    //   })
-    //   .where(and(eq(pgProjects.id, id), eq(pgProjects.userId, this.userId)))
-    //   .returning()
-    const res: ProjectRes[] = []
+    // TODO add logic with updating materials & progress
+    const projects = this.getProjectsFromStorage() || []
+    const projectsInput = projects.map(project => {
+      if (project.id !== id) return project
+      return {
+        id,
+        ...data
+      }
+    })
+    this.saveProjectsToStorage(projectsInput)
 
-    const project = this.toDto(res)?.[0]
+    const res = this.getProjectsFromStorage() || []
+    const project = res.find(project => project.id === id)
     if (!project) throw new Error(`Project with id ${id} not updated`)
 
     return project
@@ -115,8 +141,11 @@ export class ProjectManager {
 
   async deleteProjects({ ids }: DeleteProjectArgs): Promise<void> {
     console.debug(`DB: Delete projects ${JSON.stringify(ids)}`)
+    await delay()
 
-    // TODO deleteProjects in localStorage
-    // await db.delete(pgProjects).where(inArray(pgProjects.id, ids))
+    const res = this.getProjectsFromStorage() || []
+    this.saveProjectsToStorage([
+      ...res.filter(project => !ids.includes(project.id))
+    ])
   }
 }

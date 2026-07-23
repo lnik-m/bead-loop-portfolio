@@ -108,7 +108,10 @@ export function EditorProvider({ children, template: data }: Props) {
 
   const contextValue = useMemo(
     () => ({
-      // TODO auth
+      /*
+      isEditable depends on whether the user is the owner of the template.
+      Currently (with auth disabled), it is always true.
+       */
       isEditable: true,
       template,
       updateTemplate,

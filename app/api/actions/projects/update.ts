@@ -7,7 +7,6 @@ type Res = Promise<Project>
 
 async function handler(data: Req): Res {
   const projects = new ProjectManager()
-  // TODO add logic with materials & progress
   return await projects.updateProject(data)
 }
 

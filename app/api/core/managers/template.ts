@@ -1,5 +1,7 @@
 import type { Template } from 'core/collections'
 import type { SchemaType } from '../collections/template'
+import { UNEXPECTED_ERROR } from 'shared/constants'
+import { delay } from 'shared/utils'
 
 type TemplateRes = {
   id: Template['id']
@@ -32,6 +34,8 @@ const NEW_TEMPLATE = {
 }
 
 export class TemplateManager {
+  private static readonly STORAGE_KEY = 'bead-loop-templates'
+
   toDto(res: TemplateRes[]): Template[] {
     return res.map(template => ({
       id: template.id,
@@ -49,16 +53,46 @@ export class TemplateManager {
     }))
   }
 
+  private getTemplatesFromStorage(): Template[] {
+    console.debug('LS: get templates')
+    if (typeof window === 'undefined') return []
+
+    try {
+      const data = localStorage.getItem(TemplateManager.STORAGE_KEY)
+      return data ? this.toDto(JSON.parse(data)) : []
+    } catch (error) {
+      console.error(error)
+      const errorMessage =
+        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      throw new Error(`LS: get templates failed ${errorMessage}`)
+    }
+  }
+
+  private saveTemplatesToStorage(templates: Template[]): void {
+    console.debug('LS: save templates')
+    if (typeof window === 'undefined') return
+
+    try {
+      localStorage.setItem(
+        TemplateManager.STORAGE_KEY,
+        JSON.stringify(templates)
+      )
+    } catch (error) {
+      console.error(error)
+      const errorMessage =
+        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      throw new Error(`LS: save templates failed ${errorMessage}`)
+    }
+  }
+
   async getById(id: string): Promise<Template> {
     console.debug(`DB: Fetch template with id ${id}`)
-    // TODO getById from localStorage
-    // const res = await db
-    //   .select()
-    //   .from(pgTemplates)
-    //   .where(eq(pgTemplates.id, id))
-    const res: TemplateRes[] = id === 'new' ? [NEW_TEMPLATE] : []
+    await delay()
 
-    const template = this.toDto(res)?.[0]
+    if (id === 'new') return NEW_TEMPLATE
+
+    const res = this.getTemplatesFromStorage() || []
+    const template = res.find(template => template.id === id)
     if (!template) throw new Error(`Template with id ${id} not found`)
 
     return template
@@ -66,48 +100,29 @@ export class TemplateManager {
 
   async getByUser(): Promise<Template[]> {
     console.debug(`DB: Fetch user templates`)
+    await delay()
 
-    // TODO getByUser from localStorage
-    // const res = await db
-    //   .select()
-    //   .from(pgTemplates)
-    //   .where(eq(pgTemplates.userId, this.userId))
-    const res: TemplateRes[] = []
-    return this.toDto(res)
-  }
-
-  async getFeed(): Promise<Template[]> {
-    console.debug(`DB: Fetch feed templates`)
-
-    // TODO getFeed from localStorage
-    // const res = await db
-    //   .select()
-    //   .from(pgTemplates)
-    //   .where(
-    //     and(
-    //       ne(pgTemplates.userId, this.userId),
-    //       eq(pgTemplates.isPublished, true)
-    //     )
-    //   )
-    const res: TemplateRes[] = []
-    return this.toDto(res)
+    return this.getTemplatesFromStorage() || []
   }
 
   async createTemplate(data: CreateTemplateArgs): Promise<Template> {
     console.debug(`DB: Create new template`)
+    await delay()
 
-    // TODO createTemplate from localStorage
-    // const res = await db
-    //   .insert(pgTemplates)
-    //   .values({
-    //     userId: this.userId,
-    //     userName: this.userName,
-    //     ...data
-    //   })
-    //   .returning()
-    const res: TemplateRes[] = []
+    const newId = crypto.randomUUID()
+    const templateInput = [
+      ...(this.getTemplatesFromStorage() || []),
+      {
+        ...data,
+        id: newId,
+        schema: NEW_TEMPLATE['schema'],
+        isPublished: NEW_TEMPLATE['isPublished']
+      }
+    ]
+    this.saveTemplatesToStorage(templateInput)
 
-    const template = this.toDto(res)?.[0]
+    const res = this.getTemplatesFromStorage() || []
+    const template = res.find(template => template.id === newId)
     if (!template) throw new Error('Template not created')
 
     return template
@@ -115,16 +130,20 @@ export class TemplateManager {
 
   async updateTemplate({ id, ...data }: UpdateTemplateArgs): Promise<Template> {
     console.debug(`DB: Update template with id ${id}`)
+    await delay()
 
-    // TODO updateTemplate from localStorage
-    // const res = await db
-    //   .update(pgTemplates)
-    //   .set(data)
-    //   .where(and(eq(pgTemplates.id, id), eq(pgTemplates.userId, this.userId)))
-    //   .returning()
-    const res: TemplateRes[] = []
+    const templates = this.getTemplatesFromStorage() || []
+    const templateInput = templates.map(template => {
+      if (template.id !== id) return template
+      return {
+        ...template,
+        ...data
+      }
+    })
+    this.saveTemplatesToStorage(templateInput)
 
-    const template = this.toDto(res)?.[0]
+    const res = this.getTemplatesFromStorage() || []
+    const template = res.find(template => template.id === id)
     if (!template) throw new Error(`Template with id ${id} not updated`)
 
     return template
@@ -132,8 +151,12 @@ export class TemplateManager {
 
   async deleteTemplates({ ids }: DeleteTemplateArgs): Promise<void> {
     console.debug(`DB: Delete templates ${JSON.stringify(ids)}`)
+    await delay()
 
-    // TODO deleteTemplates from localStorage
-    // await db.delete(pgTemplates).where(inArray(pgTemplates.id, ids))
+    const templates = this.getTemplatesFromStorage() || []
+    const templateInput = templates.filter(
+      template => !ids.includes(template.id)
+    )
+    this.saveTemplatesToStorage(templateInput)
   }
 }

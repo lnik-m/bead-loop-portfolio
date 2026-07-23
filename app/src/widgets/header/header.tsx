@@ -3,7 +3,6 @@ import { LogoSvg } from 'shared/assets'
 import { useTheme } from 'features/theme'
 import { Flex } from 'shared/ui'
 import { Navbar } from './navbar'
-import { UserMenu } from './user-menu'
 import { ThemeToggle } from './theme-toggle'
 import { LangToggle } from './lang-toggle'
 
@@ -25,7 +24,6 @@ export const Header = ({ className }: Props) => {
           <ThemeToggle />
           <LangToggle />
         </Flex>
-        <UserMenu />
       </Flex>
     </Flex>
   )

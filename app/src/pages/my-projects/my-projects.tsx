@@ -8,10 +8,7 @@ export const MyProjects = () => {
   const { projects } = useProjects()
   return (
     <>
-      <Divider
-        label={localize('dashboard.projects.tabs.current')}
-        className="mb-2"
-      />
+      <Divider label={localize('projects.tabs.current')} className="mb-2" />
       <Flex className="max-w-full flex-wrap gap-3" isGap>
         {projects
           .filter(project => project.progress < 100)
@@ -21,7 +18,7 @@ export const MyProjects = () => {
       </Flex>
 
       <Divider
-        label={localize('dashboard.projects.tabs.finished')}
+        label={localize('projects.tabs.finished')}
         className="mt-5 mb-2"
       />
       <Flex className="max-w-full flex-wrap gap-3" isGap>

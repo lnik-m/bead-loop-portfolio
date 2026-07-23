@@ -13,7 +13,7 @@ export const MyTemplates = () => {
       <Flex className="max-w-full flex-wrap gap-3" isGap>
         <AddButton
           to={`${routes.editTemplate}new`}
-          label={localize('dashboard.myTemplates.buttons.newTemplate')}
+          label={localize('myTemplates.buttons.newTemplate')}
         />
         {myTemplates?.map(template => (
           <TemplateCard key={template.id} template={template} />

@@ -12,7 +12,6 @@ async function handler({ templateId }: Req): Res {
   const templates = new TemplateManager()
   const template = await templates.getById(templateId)
   if (!template) return
-  // TODO add logic with materials & progress
   const projects = new ProjectManager()
   return await projects.createProject({ template })
 }

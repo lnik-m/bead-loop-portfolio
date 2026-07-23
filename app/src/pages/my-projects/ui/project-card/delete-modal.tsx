@@ -13,10 +13,10 @@ export const DeleteModal = ({ projectId, closeAction }: Props) => {
   const { deleteProject } = useProjects()
   return (
     <Flex column isGap className="gap-12">
-      {localize('dashboard.projects.deleteModal.confirm')}
+      {localize('projects.deleteModal.confirm')}
       <Flex className="justify-end">
         <Button theme="dark" onClick={closeAction}>
-          {localize('dashboard.projects.buttons.cancel')}
+          {localize('projects.buttons.cancel')}
         </Button>
         <Button
           theme="warn"
@@ -25,7 +25,7 @@ export const DeleteModal = ({ projectId, closeAction }: Props) => {
             closeAction()
           }}
         >
-          {localize('dashboard.projects.buttons.delete')}
+          {localize('projects.buttons.delete')}
         </Button>
       </Flex>
     </Flex>

@@ -34,7 +34,7 @@ export const TemplateMenu = ({ templateId }: Props) => {
       <Modal
         opened={isModalOpened}
         onClose={closeModal}
-        title={localize('dashboard.myTemplates.deleteModal.title')}
+        title={localize('myTemplates.deleteModal.title')}
       >
         <DeleteModal templateId={templateId} closeAction={closeModal} />
       </Modal>
@@ -69,7 +69,7 @@ export const TemplateMenu = ({ templateId }: Props) => {
               to={`${routes.editTemplate}${templateId}`}
               leftSection={<IconPencil size={14} />}
             >
-              {localize('dashboard.myTemplates.buttons.edit')}
+              {localize('myTemplates.buttons.edit')}
             </Menu.Item>
             <Menu.Item
               onClick={event => {
@@ -78,7 +78,7 @@ export const TemplateMenu = ({ templateId }: Props) => {
               }}
               leftSection={<IconPlayerPlay size={14} />}
             >
-              {localize('dashboard.myTemplates.buttons.bead')}
+              {localize('myTemplates.buttons.bead')}
             </Menu.Item>
             <Menu.Item
               onClick={event => {
@@ -88,7 +88,7 @@ export const TemplateMenu = ({ templateId }: Props) => {
               color="red"
               leftSection={<IconTrash size={14} />}
             >
-              {localize('dashboard.myTemplates.buttons.delete')}
+              {localize('myTemplates.buttons.delete')}
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

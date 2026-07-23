@@ -9,3 +9,5 @@ scaleRange.set(1.75, 'scale-[1.75]')
 scaleRange.set(2, 'scale-[2]')
 scaleRange.set(2.25, 'scale-[2.25]')
 scaleRange.set(2.5, 'scale-[2.5]')
+
+export const UNEXPECTED_ERROR = 'An unexpected error occurred'
