@@ -5,12 +5,14 @@ import { Link } from 'react-router'
 interface Props {
   to: string
   label: string
+  state?: unknown
 }
 
-export const AddButton = ({ to, label }: Props) => {
+export const AddButton = ({ to, label, state }: Props) => {
   return (
     <Link
       to={to}
+      state={state}
       className="
       group
       flex flex-col items-center justify-center gap-1

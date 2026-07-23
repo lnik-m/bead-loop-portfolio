@@ -21,14 +21,9 @@ export function ProjectsProvider({ projects: data, children }: Props) {
 
   const addProject = useCallback(
     (templateId: Template['id']) => {
-      ;(async () => {
-        const newProject = await actions.projects.add({
-          templateId
-        })
-        // TODO convert to Pending UI
-        newProject?.id && navigate(`${routes.project}${newProject.id}`)
-        setTimeout(async () => await loadProjects(), 1000)
-      })()
+      navigate(routes.projectCreating, {
+        state: { templateId }
+      })
     },
     [navigate]
   )

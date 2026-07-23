@@ -20,7 +20,7 @@ export type DeleteTemplateArgs = {
   ids: Template['id'][]
 }
 
-const NEW_TEMPLATE = {
+export const NEW_TEMPLATE = {
   id: '',
   title: 'New template',
   type: 'loom' as SchemaType,

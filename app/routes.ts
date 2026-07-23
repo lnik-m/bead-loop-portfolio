@@ -13,6 +13,10 @@ export default [
       route('editor', './routes/dashboard/editor/page.tsx'),
       route('editor/:templateId', './routes/dashboard/editor/[id]/page.tsx'),
       route('projects', './routes/dashboard/projects/page.tsx'),
+      route(
+        'projects/creating',
+        './routes/dashboard/projects/creating/page.tsx'
+      ),
       route('projects/:projectId', './routes/dashboard/projects/[id]/page.tsx')
     ])
   ])
