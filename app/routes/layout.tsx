@@ -1,6 +1,6 @@
 import { Meta, Links, Scripts, ScrollRestoration, Outlet } from 'react-router'
 import { localStorageColorSchemeManager, MantineProvider } from '@mantine/core'
-import { I18nProvider, ThemeProvider } from 'app/providers'
+import { I18nProvider, ThemeProvider, ToastProvider } from 'app/providers'
 import { useI18n } from 'features/i18n'
 import { useTheme } from 'features/theme'
 import type { Route } from '../+types/root'
@@ -54,7 +54,9 @@ export default function Layout() {
   return (
     <I18nProvider>
       <ThemeProvider>
-        <AppLayoutContent />
+        <ToastProvider>
+          <AppLayoutContent />
+        </ToastProvider>
       </ThemeProvider>
     </I18nProvider>
   )

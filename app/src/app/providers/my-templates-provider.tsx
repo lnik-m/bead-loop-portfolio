@@ -15,12 +15,10 @@ export function MyTemplatesProvider({ templates, children }: Props) {
     setMyTemplates([...(newMyTemplateList || [])])
   }, [])
 
-  const deleteTemplate = useCallback((templateId: Template['id']) => {
-    ;(async () => {
-      await actions.templates.delete({ ids: [templateId] })
-      const newMyTemplateList = await actions.templates.get.byUser()
-      setMyTemplates([...(newMyTemplateList || [])])
-    })()
+  const deleteTemplate = useCallback(async (templateId: Template['id']) => {
+    await actions.templates.delete({ ids: [templateId] })
+    const newMyTemplateList = await actions.templates.get.byUser()
+    setMyTemplates([...(newMyTemplateList || [])])
   }, [])
 
   const contextValue = useMemo(

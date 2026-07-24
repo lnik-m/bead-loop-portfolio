@@ -4,7 +4,7 @@ import type { Template, Project } from 'core/collections'
 import { DashboardProviders } from 'app/providers'
 import { routes } from 'app/routes'
 import { Header } from 'widgets'
-import { useI18n } from 'features/i18n'
+import { useTheme } from 'features/theme'
 import { Flex } from 'shared/ui'
 
 interface Props extends PropsWithChildren {
@@ -13,7 +13,7 @@ interface Props extends PropsWithChildren {
 }
 
 export const DashboardLayout = ({ templates, projects, children }: Props) => {
-  const { localize } = useI18n()
+  const { theme } = useTheme()
   const { pathname } = useLocation()
   const fullScreenPage =
     pathname.includes(routes.editTemplate) || pathname.includes(routes.project)

@@ -14,7 +14,11 @@ const messages = {
   },
   deleteModal: {
     title: 'Delete template',
-    confirm: 'Do you want to delete this template?'
+    confirm: 'Do you want to delete this template?',
+    toast: {
+      success: 'Template is successfully deleted',
+      error: 'Error while deleting template'
+    }
   }
 }
 
