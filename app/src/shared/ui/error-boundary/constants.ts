@@ -15,22 +15,3 @@ export const COLORS = [
   '#EAEFFD', // light-50
   '#F1D8ED' // accent-200
 ]
-
-export const messages = {
-  en: {
-    notFound: {
-      message: '404',
-      details: 'Page Not Found'
-    },
-    base: {
-      message: 'Oops!',
-      details: 'An unexpected error occurred'
-    },
-    buttons: {
-      reload: 'Reload Page',
-      back: 'Return',
-      main: 'Go Home'
-    },
-    details: 'Error details'
-  }
-}
