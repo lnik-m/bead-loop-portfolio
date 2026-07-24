@@ -1,10 +1,9 @@
+import { IconTrash } from '@tabler/icons-react'
+
 import type { Template } from 'core/collections'
 import { useI18n } from 'features/i18n'
-import { useMyTemplates } from 'features/my-templates'
-import { useCallback, useState } from 'react'
-import toast from 'react-hot-toast'
 import { Button, Flex } from 'shared/ui'
-import { UNEXPECTED_ERROR } from 'shared/constants'
+import { useDeleteTemplate } from './use-delete-template'
 
 interface Props {
   templateId: Template['id']
@@ -13,35 +12,32 @@ interface Props {
 
 export const DeleteModal = ({ templateId, closeAction }: Props) => {
   const { localize } = useI18n()
-  const { deleteTemplate } = useMyTemplates()
-
-  const [loading, setLoading] = useState<boolean>(false)
-  const handleDelete = useCallback(async () => {
-    setLoading(true)
-    try {
-      await deleteTemplate(templateId)
-      closeAction()
-      toast.success(localize('myTemplates.deleteModal.toast.success'))
-    } catch (error) {
-      console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
-      toast.error(
-        `${localize('myTemplates.deleteModal.toast.error')}. ${errorMessage}`
-      )
-    } finally {
-      setLoading(false)
-    }
-  }, [templateId, deleteTemplate, closeAction])
-
+  const { loading, handleDelete } = useDeleteTemplate({
+    templateId,
+    closeAction
+  })
   return (
-    <Flex column isGap className="gap-12">
-      {localize('myTemplates.deleteModal.confirm')}
+    <Flex column isGap className="gap-8">
+      <Flex className="items-center justify-between">
+        <Flex isGap className="items-center gap-3">
+          <div className="w-12 h-12 rounded-full bg-bead-loop-rose/10 flex items-center justify-center">
+            <IconTrash className="w-6 h-6 text-bead-loop-rose" stroke={1.5} />
+          </div>
+          <h3 className="text-xl font-semibold text-bead-loop-purple dark:text-white">
+            {localize('myTemplates.deleteModal.title')}
+          </h3>
+        </Flex>
+      </Flex>
+
+      <p className="text-bead-loop-gray dark:text-bead-loop-light-20 text-base leading-relaxed">
+        {localize('myTemplates.deleteModal.confirm')}
+      </p>
+
       <Flex className="justify-end">
-        <Button theme="dark" onClick={closeAction}>
+        <Button theme={'warn'} onClick={closeAction} className="px-4">
           {localize('myTemplates.buttons.cancel')}
         </Button>
-        <Button theme="warn" onClick={handleDelete} loading={loading}>
+        <Button onClick={handleDelete} loading={loading} className="px-8">
           {localize('myTemplates.buttons.delete')}
         </Button>
       </Flex>

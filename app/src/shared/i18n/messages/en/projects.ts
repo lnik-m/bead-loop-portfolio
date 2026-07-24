@@ -2,6 +2,7 @@ const messages = {
   buttons: {
     newProject: 'New project',
     delete: 'Delete',
+    deleting: 'Deleting',
     cancel: 'Cancel'
   },
   tabs: {
