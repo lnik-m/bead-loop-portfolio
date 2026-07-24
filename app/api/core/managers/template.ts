@@ -112,7 +112,6 @@ export class TemplateManager {
       {
         ...data,
         id: newId,
-        schema: NEW_TEMPLATE['schema'],
         isPublished: NEW_TEMPLATE['isPublished']
       }
     ]
