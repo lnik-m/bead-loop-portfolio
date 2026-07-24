@@ -1,7 +1,7 @@
 import {
   type PropsWithChildren,
   useCallback,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useState
 } from 'react'
@@ -12,11 +12,12 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
   const [localTheme, setLocalTheme] = useState<Theme>('light')
   const [theme, setTheme] = useState<Theme>(localTheme)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const localTheme = localStorage.getItem('theme')
       ? (localStorage.getItem('theme') as Theme)
       : 'light'
     setLocalTheme(localTheme)
+    setTheme(localTheme)
   }, [])
 
   const toggleTheme = useCallback(() => {

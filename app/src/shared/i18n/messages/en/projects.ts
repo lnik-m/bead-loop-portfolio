@@ -8,6 +8,10 @@ const messages = {
     current: 'Current projects',
     finished: 'Finished projects'
   },
+  empty: {
+    title: 'No projects found',
+    description: 'To create a project click "Bead" on template card'
+  },
   labels: {
     title: 'Title',
     emptyTitle: 'Fill template name'
