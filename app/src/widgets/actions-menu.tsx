@@ -21,7 +21,6 @@ export const ActionsMenu = () => {
   } = useActionsMenu()
   return (
     <Flex>
-      {/*TODO import { useDrag } from '@mantine/hooks';*/}
       <ActionIcon onClick={move} isActive={isMoving} label={'Move template'}>
         <IconArrowsMove />
       </ActionIcon>
