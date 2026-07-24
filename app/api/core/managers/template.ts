@@ -1,7 +1,6 @@
 import type { Template } from 'core/collections'
 import type { SchemaType } from '../collections/template'
-import { UNEXPECTED_ERROR } from 'shared/constants'
-import { delay } from 'shared/utils'
+import { delay, parseErrorMessage } from 'shared/utils'
 
 type TemplateRes = {
   id: Template['id']
@@ -62,8 +61,7 @@ export class TemplateManager {
       return data ? this.toDto(JSON.parse(data)) : []
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       throw new Error(`LS: get templates failed ${errorMessage}`)
     }
   }
@@ -79,8 +77,7 @@ export class TemplateManager {
       )
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       throw new Error(`LS: save templates failed ${errorMessage}`)
     }
   }

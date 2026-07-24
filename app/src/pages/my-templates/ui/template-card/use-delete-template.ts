@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import type { Template } from 'core/collections'
 import { useI18n } from 'features/i18n'
 import { useMyTemplates } from 'features/my-templates'
-import { UNEXPECTED_ERROR } from 'shared/constants'
+import { parseErrorMessage } from 'shared/utils'
 
 interface Props {
   templateId: Template['id']
@@ -24,8 +24,7 @@ export const useDeleteTemplate = ({ templateId, closeAction }: Props) => {
       toast.success(localize('myTemplates.deleteModal.toast.success'))
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       toast.error(
         `${localize('myTemplates.deleteModal.toast.error')}. ${errorMessage}`
       )

@@ -1,7 +1,6 @@
 import type { Template, Project } from 'core/collections'
 import { getMaterials } from 'api/utils'
-import { UNEXPECTED_ERROR } from 'shared/constants'
-import { delay } from 'shared/utils'
+import { delay, parseErrorMessage } from 'shared/utils'
 
 type ProjectRes = {
   id: Project['id']
@@ -46,8 +45,7 @@ export class ProjectManager {
       return data ? this.toDto(JSON.parse(data) as ProjectRes[]) : []
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       throw new Error(`LS: get projects failed ${errorMessage}`)
     }
   }
@@ -60,8 +58,7 @@ export class ProjectManager {
       localStorage.setItem(ProjectManager.STORAGE_KEY, JSON.stringify(projects))
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       throw new Error(`LS: save projects failed ${errorMessage}`)
     }
   }

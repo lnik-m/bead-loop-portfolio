@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import type { Project } from 'core/collections'
 import { useI18n } from 'features/i18n'
 import { useProjects } from 'features/projects'
-import { UNEXPECTED_ERROR } from 'shared/constants'
+import { parseErrorMessage } from 'shared/utils'
 
 interface Props {
   projectId: Project['id']
@@ -24,8 +24,7 @@ export const useDeleteProject = ({ projectId, closeAction }: Props) => {
       toast.success(localize('projects.deleteModal.toast.success'))
     } catch (error) {
       console.error(error)
-      const errorMessage =
-        error instanceof Error ? error.message : UNEXPECTED_ERROR
+      const errorMessage = parseErrorMessage(error)
       toast.error(
         `${localize('projects.deleteModal.toast.error')}. ${errorMessage}`
       )
