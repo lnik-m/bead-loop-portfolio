@@ -15,7 +15,7 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
   return { getProjects }
 }
 
-export default function ProjectPage() {
+function ProjectPageContent() {
   const { getProjects } = useLoaderData<typeof clientLoader>()
   const location = useLocation()
   const projectFromState = location.state as ProjectCollection | null
@@ -34,5 +34,14 @@ export default function ProjectPage() {
         }}
       />
     </Suspense>
+  )
+}
+
+export default function ProjectPage() {
+  return (
+    <>
+      <title>Project – Bead Loop</title>
+      <ProjectPageContent />
+    </>
   )
 }

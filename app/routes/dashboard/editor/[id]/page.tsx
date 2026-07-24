@@ -15,7 +15,7 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
   return { getTemplates }
 }
 
-export default function EditorTemplatePage() {
+function EditorTemplatePageContent() {
   const { getTemplates } = useLoaderData<typeof clientLoader>()
   const location = useLocation()
 
@@ -40,5 +40,14 @@ export default function EditorTemplatePage() {
         }}
       />
     </Suspense>
+  )
+}
+
+export default function EditorTemplatePage() {
+  return (
+    <>
+      <title>Editor – Bead Loop</title>
+      <EditorTemplatePageContent />
+    </>
   )
 }

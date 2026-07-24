@@ -31,6 +31,7 @@ const AppLayoutContent = () => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bead Loop</title>
         <Meta />
         <Links />
       </head>
