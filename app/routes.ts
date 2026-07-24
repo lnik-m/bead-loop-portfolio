@@ -18,6 +18,8 @@ export default [
         './routes/dashboard/projects/creating/page.tsx'
       ),
       route('projects/:projectId', './routes/dashboard/projects/[id]/page.tsx')
-    ])
+    ]),
+
+    route('*', './routes/not-found/page.tsx')
   ])
 ] satisfies RouteConfig
