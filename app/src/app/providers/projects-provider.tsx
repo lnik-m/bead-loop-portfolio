@@ -28,12 +28,10 @@ export function ProjectsProvider({ projects: data, children }: Props) {
     [navigate]
   )
 
-  const deleteProject = useCallback((projectId: Project['id']) => {
-    ;(async () => {
-      await actions.projects.delete({ ids: [projectId] })
-      const newProjectList = await actions.projects.get.byUser()
-      setProjects([...(newProjectList || [])])
-    })()
+  const deleteProject = useCallback(async (projectId: Project['id']) => {
+    await actions.projects.delete({ ids: [projectId] })
+    const newProjectList = await actions.projects.get.byUser()
+    setProjects([...(newProjectList || [])])
   }, [])
 
   const contextValue = useMemo(
