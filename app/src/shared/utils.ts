@@ -9,7 +9,7 @@ export const delay = (ms: number = DELAY_MS): Promise<void> => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
+export const UNEXPECTED_ERROR = 'An unexpected error occurred'
 export const parseErrorMessage = (error: unknown) => {
-  const UNEXPECTED_ERROR = 'An unexpected error occurred'
   return error instanceof Error ? error.message : UNEXPECTED_ERROR
 }

@@ -28,9 +28,11 @@ export const getProgress = (
   type: Project['type']
 ): number => {
   const materials = getMaterials(schema, type)
-  return Math.floor(
-    (schema.flat().filter(({ isBeaded }) => isBeaded).length /
-      materials.map(({ count }) => count).reduce((a, b) => a + b)) *
-      100
-  )
+  const total = materials.reduce((sum, { count }) => sum + count, 0)
+
+  if (!schema?.length || total === 0) return 0
+
+  const beaded = schema.flat().filter(({ isBeaded }) => isBeaded).length
+
+  return Math.floor((beaded / total) * 100)
 }
