@@ -2,7 +2,7 @@
 
 > Platform for creating beadwork patterns (SaaS)
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://bead-loop-portfolio.vercel.app)
+[![Deployed on Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify)](https://bead-loop.netlify.app)
 [![React Router](https://img.shields.io/badge/React%20Router-7-CA4245?logo=reactrouter)](https://reactrouter.com)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss)](https://tailwindcss.com)
 [![Bun](https://img.shields.io/badge/Bun-1.0-black?logo=bun)](https://bun.sh)
@@ -53,12 +53,11 @@
 | **Styling**    | Tailwind CSS 4, Mantine 7, Tabler Icons |
 | **Animations** | CSS Animations, Web Animations API      |
 | **Testing**    | Vitest                                  |
-| **CI/CD**      | Vercel                                  |
+| **CI/CD**      | Netlify                                 |
 | **Linting**    | ESLint, Prettier                        |
 | **Language**   | TypeScript 5.9                          |
 
 ---
 
 ## 🚀 Live Demo
-
-**[bead-loop-portfolio.vercel.app](https://bead-loop-portfolio.vercel.app)**
+**[bhttps://bead-loop.netlify.app](https://bead-loop.netlify.app)**
