@@ -108,12 +108,12 @@ export class TemplateManager {
 
     const newId = crypto.randomUUID()
     const templateInput = [
-      ...(this.getTemplatesFromStorage() || []),
       {
         ...data,
         id: newId,
         isPublished: NEW_TEMPLATE['isPublished']
-      }
+      },
+      ...(this.getTemplatesFromStorage() || [])
     ]
     this.saveTemplatesToStorage(templateInput)
 

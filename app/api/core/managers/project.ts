@@ -95,7 +95,6 @@ export class ProjectManager {
 
     const newId = crypto.randomUUID()
     const projectInput = [
-      ...(this.getProjectsFromStorage() || []),
       {
         id: newId,
         title: 'New Project',
@@ -103,7 +102,8 @@ export class ProjectManager {
         schema,
         materials,
         progress: 0
-      }
+      },
+      ...(this.getProjectsFromStorage() || [])
     ]
     this.saveProjectsToStorage(projectInput)
 

@@ -13,6 +13,7 @@ import { useActionsMenu } from 'features/actions-menu'
 import { useEditor } from 'features/editor'
 import { Flex, ActionIcon } from 'shared/ui'
 import { useI18n } from 'features/i18n'
+import { getNewSchema } from './utils'
 
 interface Props {
   schemaRef: RefObject<any>
@@ -39,10 +40,17 @@ export const EditorArea = ({ schemaRef }: Props) => {
     (row: number, column: number) => {
       if (!isEditable) return
       const { schema } = template
-      schema[row][column] = isEraser ? '' : currentColor
-      updateTemplate({ ...template, schema })
+      const newSchema = getNewSchema({
+        schema,
+        row,
+        column,
+        mode,
+        isEraser,
+        currentColor
+      })
+      updateTemplate({ ...template, schema: newSchema })
     },
-    [template, currentColor, updateTemplate, isEraser, isEditable]
+    [template, currentColor, updateTemplate, isEraser, isEditable, mode]
   )
   return (
     <Flex
