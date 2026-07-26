@@ -1,6 +1,7 @@
 {
   "name": "bead-loop-portfolio",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
