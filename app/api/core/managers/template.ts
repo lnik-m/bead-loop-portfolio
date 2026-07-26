@@ -1,6 +1,5 @@
-import type { Template } from 'core/collections'
-import type { SchemaType } from '../collections/template'
 import { delay, parseErrorMessage } from 'shared/utils'
+import type { Template, SchemaType } from '../collections/template'
 
 type TemplateRes = {
   id: Template['id']

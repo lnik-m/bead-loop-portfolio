@@ -36,7 +36,7 @@ export const ProjectInfo = () => {
             updateProject({ title: currentTarget.value })
           }}
         />
-        <p className="font-medium">Материалы</p>
+        <p className="font-medium">{localize('projects.labels.materials')}</p>
         {materials.map(bead => (
           <BeadInfo key={bead.color} {...bead} />
         ))}
@@ -48,7 +48,7 @@ export const ProjectInfo = () => {
           loading={isSaving}
           onClick={() => saveProgress().then(() => navigate(routes.myProjects))}
         >
-          Сохранить прогресс
+          {localize('projects.buttons.save')}
         </Button>
         <Button
           disabled={!!error}
@@ -58,7 +58,7 @@ export const ProjectInfo = () => {
             finishBeading().then(() => navigate(routes.myProjects))
           }
         >
-          Завершить
+          {localize('projects.buttons.finish')}
         </Button>
       </Flex>
     </Flex>

@@ -15,7 +15,12 @@ const messages = {
   },
   labels: {
     title: 'Title',
-    emptyTitle: 'Fill template name'
+    emptyTitle: 'Fill template name',
+    materials: 'Materials'
+  },
+  buttons: {
+    save: 'Save progress',
+    finish: 'Finish project'
   },
   deleteModal: {
     title: 'Delete project',
