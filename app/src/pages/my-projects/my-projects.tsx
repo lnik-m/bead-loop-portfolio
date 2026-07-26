@@ -3,7 +3,7 @@ import { useProjects } from 'features/projects'
 import { Divider, Flex } from 'shared/ui'
 import { ProjectCard, ProjectEmpty } from './ui'
 
-export const MyProjects = () => {
+function MyProjects() {
   const { localize } = useI18n()
   const { projects } = useProjects()
 
@@ -37,3 +37,5 @@ export const MyProjects = () => {
     </>
   )
 }
+
+export default MyProjects

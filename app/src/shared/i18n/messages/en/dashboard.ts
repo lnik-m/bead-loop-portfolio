@@ -6,10 +6,7 @@ const messages = {
   schemaTypes: {
     loom: 'loom',
     cross: 'cross',
-    peyote: 'peyote',
-    diamond: 'diamond',
-    detailed: 'detailed',
-    flower: 'flower'
+    peyote: 'peyote'
   },
   move: 'Move',
   byColor: 'By color',

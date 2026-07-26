@@ -33,7 +33,6 @@ export default function CreatingProjectPage() {
         }
       } catch (error) {
         if (!isMounted) return
-        // TODO
         console.error('Failed to create project:', error)
         navigate(routes.myProjects, { replace: true })
       }

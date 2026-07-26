@@ -27,9 +27,43 @@ export const ERROR_FALLBACK_MESSAGES = {
       main: 'Go Home'
     },
     details: 'Error details'
+  },
+  es: {
+    notFound: {
+      message: '404',
+      details: 'Página no encontrada'
+    },
+    base: {
+      message: '¡Ups!',
+      details: 'Ocurrió un error inesperado'
+    },
+    buttons: {
+      reload: 'Recargar página',
+      back: 'Volver',
+      main: 'Ir al inicio'
+    },
+    details: 'Detalles del error'
+  },
+  ru: {
+    notFound: {
+      message: '404',
+      details: 'Страница не найдена'
+    },
+    base: {
+      message: 'Ой!',
+      details: 'Произошла непредвиденная ошибка'
+    },
+    buttons: {
+      reload: 'Перезагрузить',
+      back: 'Назад',
+      main: 'На главную'
+    },
+    details: 'Детали ошибки'
   }
 }
 
 export const NEW_PROJECT_TITLE = {
-  en: 'New Project'
+  en: 'New Project',
+  es: 'Nuevo Proyecto',
+  ru: 'Новый Проект'
 }

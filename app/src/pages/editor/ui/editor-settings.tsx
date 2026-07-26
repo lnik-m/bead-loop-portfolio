@@ -42,10 +42,6 @@ export const EditorSettings = ({
     'loom',
     'peyote',
     'cross'
-    // TODO: add views
-    // 'flower',
-    // 'diamond',
-    // 'detailed'
   ].map(type => {
     const text = localize(`dashboard.schemaTypes.${type as SchemaType}`)
     return {
