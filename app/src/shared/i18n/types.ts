@@ -7,7 +7,7 @@ export type DeepKeyOf<T> = T extends object
     }[keyof T]
   : never
 
-export type ISupportedLocale = 'en'
+export type ISupportedLocale = 'en' | 'ru' | 'es'
 
 export type IMessages = {
   [key: string]: IMessages | string

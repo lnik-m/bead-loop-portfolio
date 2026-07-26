@@ -3,7 +3,9 @@ const messages = {
     newProject: 'New project',
     delete: 'Delete',
     deleting: 'Deleting',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    save: 'Save progress',
+    finish: 'Finish project'
   },
   tabs: {
     current: 'Current projects',
@@ -15,16 +17,13 @@ const messages = {
   },
   labels: {
     title: 'Title',
-    emptyTitle: 'Fill template name',
+    emptyTitle: 'Fill project name',
     materials: 'Materials'
-  },
-  buttons: {
-    save: 'Save progress',
-    finish: 'Finish project'
   },
   deleteModal: {
     title: 'Delete project',
-    confirm: 'Do you want to delete this project?',
+    confirm:
+      'Are you sure you want to delete this project? This action cannot be undone',
     toast: {
       success: 'Project is successfully deleted',
       error: 'Error while deleting project'
