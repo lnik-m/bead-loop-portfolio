@@ -1,4 +1,4 @@
-import { scaleRange, UNEXPECTED_ERROR } from 'shared/constants'
+import { scaleRange } from 'shared/constants'
 
 export const getScale = (scaleNumber: number): string => {
   return scaleRange.get(scaleNumber) ?? 'scale-[1]'
@@ -10,5 +10,6 @@ export const delay = (ms: number = DELAY_MS): Promise<void> => {
 }
 
 export const parseErrorMessage = (error: unknown) => {
+  const UNEXPECTED_ERROR = 'An unexpected error occurred'
   return error instanceof Error ? error.message : UNEXPECTED_ERROR
 }

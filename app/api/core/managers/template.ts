@@ -21,7 +21,7 @@ export type DeleteTemplateArgs = {
 
 export const NEW_TEMPLATE = {
   id: '',
-  title: 'New template',
+  title: '',
   type: 'loom' as SchemaType,
   schema: [
     ['', '', '', '', '', ''],
