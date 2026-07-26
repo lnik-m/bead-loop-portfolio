@@ -20,10 +20,11 @@
 ### ✨ Features
 
 **Core**
+
 - ✏️ **Pattern editor** with support for multiple techniques:
-    - **Loom** — classic loom beading
-    - **Peyote** — brick stitch
-    - **Cross** — cross stitch style
+  - **Loom** — classic loom beading
+  - **Peyote** — brick stitch
+  - **Cross** — cross stitch style
 - 🎨 **Interactive Canvas** with fast bead rendering
 - 📊 **Project progress tracking** — monitor your beading progress
 - 📦 **localStorage** for project storage
@@ -31,8 +32,9 @@
 - 🌍 **Multi-language** (EN, RU, ES)
 
 **UX & Performance & Architecture**
+
 - 🎭 **Animated 404 page** — playful bead scattering animation on error
-- ⚡  **Lazy loading** — code splitting for faster initial load
+- ⚡ **Lazy loading** — code splitting for faster initial load
 - 🌓 **Dark/Light theme** — system preference aware
 - 🌍 **Multi-language** — EN, RU, ES support
 - ✅ **Form validation** — real-time validation with Mantine
@@ -44,16 +46,16 @@
 
 ## 🛠️ Tech Stack
 
-| Category | Technologies                            |
-| :--- |:----------------------------------------|
-| **Framework** | React 18, React Router 7                |
-| **Build** | Vite 8, Bun                             |
-| **Styling** | Tailwind CSS 4, Mantine 7, Tabler Icons |
+| Category       | Technologies                            |
+| :------------- | :-------------------------------------- |
+| **Framework**  | React 18, React Router 7                |
+| **Build**      | Vite 8, Bun                             |
+| **Styling**    | Tailwind CSS 4, Mantine 7, Tabler Icons |
 | **Animations** | CSS Animations, Web Animations API      |
-| **Testing** | Vitest                                  |
-| **CI/CD** | Vercel                                  |
-| **Linting** | ESLint, Prettier                        |
-| **Language** | TypeScript 5.9                          |
+| **Testing**    | Vitest                                  |
+| **CI/CD**      | Vercel                                  |
+| **Linting**    | ESLint, Prettier                        |
+| **Language**   | TypeScript 5.9                          |
 
 ---
 
