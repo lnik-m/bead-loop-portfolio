@@ -10,7 +10,8 @@ const messages = {
     diamond: 'diamond',
     detailed: 'detailed',
     flower: 'flower'
-  }
+  },
+  move: 'Move'
 }
 
 export default messages

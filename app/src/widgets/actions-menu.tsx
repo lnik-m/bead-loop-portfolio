@@ -5,10 +5,12 @@ import {
   IconRotateClockwise2
 } from '@tabler/icons-react'
 
+import { useI18n } from 'features/i18n'
 import { useActionsMenu } from 'features/actions-menu'
 import { Flex, ActionIcon } from 'shared/ui'
 
 export const ActionsMenu = () => {
+  const { localize } = useI18n()
   const {
     scale,
     minScale,
@@ -21,7 +23,11 @@ export const ActionsMenu = () => {
   } = useActionsMenu()
   return (
     <Flex>
-      <ActionIcon onClick={move} isActive={isMoving} label={'Move template'}>
+      <ActionIcon
+        onClick={move}
+        isActive={isMoving}
+        label={localize('dashboard.move')}
+      >
         <IconArrowsMove />
       </ActionIcon>
       <ActionIcon onClick={zoomOut} disabled={scale === minScale}>

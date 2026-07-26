@@ -1,12 +1,14 @@
-import { type RefObject, useState } from 'react'
+import { type RefObject, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { NumberInput, Select, TextInput } from '@mantine/core'
+import { Select, TextInput } from '@mantine/core'
 import { useFocusTrap } from '@mantine/hooks'
 import type { SchemaType } from 'core/collections/template'
 import { routes } from 'app/routes'
 import { useEditor } from 'features/editor'
 import { useI18n } from 'features/i18n'
 import { Button, Flex } from 'shared/ui'
+import { SchemaSizeInput } from './schema-size-input'
+import { useSchemaNormalization } from './use-schema-normalization'
 
 interface Props {
   exportSchemaAction: (ref: RefObject<any>) => void
@@ -53,8 +55,15 @@ export const EditorSettings = ({
   })
   const focusTrapRef = useFocusTrap(true)
   const [error, setError] = useState('')
-  const [displayedColumns, setDisplayedColumns] = useState(columns)
-  const [displayedRows, setDisplayedRows] = useState(rows)
+
+  const { normalizeValue, normalizeForSchemaType, getLimits, getStep } =
+    useSchemaNormalization(rows, columns)
+
+  useEffect(() => {
+    const updates = normalizeForSchemaType(schemaType)
+    if (updates.rows) updateRows(updates.rows)
+    if (updates.cols) updateColumns(updates.cols)
+  }, [schemaType, normalizeForSchemaType])
   return (
     <Flex
       column
@@ -86,23 +95,25 @@ export const EditorSettings = ({
           allowDeselect={false}
         />
         <Flex className="grid grid-cols-2">
-          <NumberInput
+          <SchemaSizeInput
+            value={rows}
+            onChange={updateRows}
+            dimension={'rows'}
+            schemaType={schemaType}
             disabled={!isEditable}
-            min={1}
-            max={50}
-            label={localize('editor.labels.rows')}
-            value={displayedRows}
-            onChange={v => setDisplayedRows(+v)}
-            onBlur={() => updateRows(displayedRows)}
+            normalizeValue={normalizeValue}
+            getLimits={getLimits}
+            getStep={getStep}
           />
-          <NumberInput
+          <SchemaSizeInput
+            value={columns}
+            onChange={updateColumns}
+            dimension={'columns'}
+            schemaType={schemaType}
             disabled={!isEditable}
-            min={1}
-            max={50}
-            label={localize('editor.labels.columns')}
-            value={displayedColumns}
-            onChange={v => setDisplayedColumns(+v)}
-            onBlur={() => updateColumns(displayedColumns)}
+            normalizeValue={normalizeValue}
+            getLimits={getLimits}
+            getStep={getStep}
           />
         </Flex>
       </Flex>

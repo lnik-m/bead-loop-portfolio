@@ -1,3 +1,4 @@
+export const MIN_SCALE = 'scale-[0.12]'
 export const scaleRange: Map<number, string> = new Map()
 scaleRange.set(0.25, 'scale-[0.25]')
 scaleRange.set(0.5, 'scale-[0.5]')

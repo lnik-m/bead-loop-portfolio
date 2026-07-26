@@ -1,6 +1,7 @@
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import { ActionsMenuContext } from 'features/actions-menu'
 import { getScale } from 'shared/utils'
+import { MIN_SCALE } from 'shared/constants'
 
 export function MenuProvider({ children }: PropsWithChildren) {
   const [isMoving, setIsMoving] = useState<boolean>(false)
@@ -35,22 +36,23 @@ export function MenuProvider({ children }: PropsWithChildren) {
 
   const [scale, setScale] = useState('scale-[1]')
   const zoomIn = useCallback(() => {
-    const scaleNumber = +scale.slice(7, scale.length - 1) + 0.25
+    const scaleNumber = (() => {
+      if (scale === MIN_SCALE) return 0.25
+      return +scale.slice(7, scale.length - 1) + 0.25
+    })()
     if (scaleNumber <= 2.5) {
       setScale(getScale(scaleNumber))
     }
   }, [scale])
   const zoomOut = useCallback(() => {
     const scaleNumber = +scale.slice(7, scale.length - 1) - 0.25
-    if (scaleNumber >= 0.25) {
-      setScale(getScale(scaleNumber))
-    }
+    setScale(scaleNumber >= 0.25 ? getScale(scaleNumber) : MIN_SCALE)
   }, [scale])
 
   const contextValue = useMemo(
     () => ({
       scale,
-      minScale: 'scale-[0.25]',
+      minScale: MIN_SCALE,
       maxScale: 'scale-[2.5]',
       zoomIn,
       zoomOut,
