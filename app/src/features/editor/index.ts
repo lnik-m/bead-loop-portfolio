@@ -1,2 +1,2 @@
-export { EditorContext } from './editor-context'
+export { EditorContext, type Mode } from './editor-context'
 export { useEditor } from './use-editor'

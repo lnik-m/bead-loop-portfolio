@@ -11,7 +11,10 @@ const messages = {
     detailed: 'detailed',
     flower: 'flower'
   },
-  move: 'Move'
+  move: 'Move',
+  byColor: 'By color',
+  byColumn: 'By column',
+  byRow: 'By row'
 }
 
 export default messages
