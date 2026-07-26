@@ -1,6 +1,8 @@
 import type { Template, Project } from 'core/collections'
 import { getMaterials } from 'api/utils'
 import { delay, parseErrorMessage } from 'shared/utils'
+import { NEW_PROJECT_TITLE } from 'shared/constants'
+import type { ISupportedLocale } from 'shared/i18n'
 
 type ProjectRes = {
   id: Project['id']
@@ -34,6 +36,11 @@ export class ProjectManager {
       materials: project.materials as unknown as Project['materials'],
       progress: project.progress
     }))
+  }
+
+  private getLangFromStorage(): ISupportedLocale {
+    const lang = localStorage.getItem('lang')
+    return lang ? (lang as ISupportedLocale) : 'en'
   }
 
   private getProjectsFromStorage(): Project[] {
@@ -90,20 +97,21 @@ export class ProjectManager {
     const schema = template.schema.map(row =>
       row.map(color => ({ color, isBeaded: false }))
     )
-    const materials = getMaterials(schema)
+    const materials = getMaterials(schema, template.type)
     if (!materials.length) return
 
     const newId = crypto.randomUUID()
+    const lang = this.getLangFromStorage()
     const projectInput = [
-      ...(this.getProjectsFromStorage() || []),
       {
         id: newId,
-        title: 'New Project',
+        title: `${NEW_PROJECT_TITLE[lang]} – ${template.title}`,
         type: template.type,
         schema,
         materials,
         progress: 0
-      }
+      },
+      ...(this.getProjectsFromStorage() || [])
     ]
     this.saveProjectsToStorage(projectInput)
 
@@ -118,7 +126,6 @@ export class ProjectManager {
     console.debug(`DB: Update project with id ${id}`)
     await delay()
 
-    // TODO add logic with updating materials & progress
     const projects = this.getProjectsFromStorage() || []
     const projectsInput = projects.map(project => {
       if (project.id !== id) return project

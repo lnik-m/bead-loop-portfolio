@@ -1,4 +1,9 @@
-import { IconBrush, IconEraser } from '@tabler/icons-react'
+import {
+  IconBrush,
+  IconBucketDroplet,
+  IconEraser,
+  IconArrowAutofitHeightFilled
+} from '@tabler/icons-react'
 
 import { type RefObject, useCallback, useRef } from 'react'
 import Draggable from 'react-draggable'
@@ -7,12 +12,15 @@ import { ActionsMenu, TemplateViews } from 'widgets'
 import { useActionsMenu } from 'features/actions-menu'
 import { useEditor } from 'features/editor'
 import { Flex, ActionIcon } from 'shared/ui'
+import { useI18n } from 'features/i18n'
+import { getNewSchema } from './utils'
 
 interface Props {
   schemaRef: RefObject<any>
 }
 
 export const EditorArea = ({ schemaRef }: Props) => {
+  const { localize } = useI18n()
   const {
     template,
     updateTemplate,
@@ -21,7 +29,9 @@ export const EditorArea = ({ schemaRef }: Props) => {
     isEraser,
     erase,
     paint,
-    isEditable
+    isEditable,
+    mode,
+    changeMode
   } = useEditor()
   const { scale, rotate, isMoving } = useActionsMenu()
   const nodeRef = useRef(null)
@@ -30,10 +40,17 @@ export const EditorArea = ({ schemaRef }: Props) => {
     (row: number, column: number) => {
       if (!isEditable) return
       const { schema } = template
-      schema[row][column] = isEraser ? '' : currentColor
-      updateTemplate({ ...template, schema })
+      const newSchema = getNewSchema({
+        schema,
+        row,
+        column,
+        mode,
+        isEraser,
+        currentColor
+      })
+      updateTemplate({ ...template, schema: newSchema })
     },
-    [template, currentColor, updateTemplate, isEraser, isEditable]
+    [template, currentColor, updateTemplate, isEraser, isEditable, mode]
   )
   return (
     <Flex
@@ -56,6 +73,29 @@ export const EditorArea = ({ schemaRef }: Props) => {
             disabled={isEraser}
             disallowInput
           />
+          <ActionIcon
+            isActive={mode === 'byColor'}
+            onClick={() => changeMode('byColor')}
+            label={localize('dashboard.byColor')}
+          >
+            <IconBucketDroplet />
+          </ActionIcon>
+          <ActionIcon
+            isActive={mode === 'byColumn'}
+            onClick={() => changeMode('byColumn')}
+            label={localize('dashboard.byColumn')}
+          >
+            <IconArrowAutofitHeightFilled />
+          </ActionIcon>
+          <ActionIcon
+            isActive={mode === 'byRow'}
+            onClick={() => changeMode('byRow')}
+            label={localize('dashboard.byRow')}
+          >
+            <IconArrowAutofitHeightFilled
+              style={{ transform: 'rotate(90deg)' }}
+            />
+          </ActionIcon>
         </Flex>
         <ActionsMenu />
       </Flex>

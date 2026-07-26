@@ -1,4 +1,5 @@
 import type { CellPosition } from '../types'
+import { CANVAS_PADDING } from '../constants'
 
 export function getPeyotePosition(
   row: number,
@@ -10,8 +11,9 @@ export function getPeyotePosition(
   const offset = isOddRow ? (cellSize + gap) / 2 : 0
 
   return {
-    x: col * (cellSize + gap) + cellSize / 2 + gap / 2 + offset,
-    y: row * (cellSize + gap) + cellSize / 2 + gap / 2,
+    x:
+      col * (cellSize + gap) + cellSize / 2 + gap / 2 + offset + CANVAS_PADDING,
+    y: row * (cellSize + gap) + cellSize / 2 + gap / 2 + CANVAS_PADDING,
     isOffset: isOddRow,
     isHorizontal: false,
     width: cellSize,

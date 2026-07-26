@@ -2,6 +2,8 @@ import { createContext } from 'react'
 import type { Template } from 'core/collections'
 import type { SchemaType } from 'core/collections/template'
 
+export type Mode = 'default' | 'byColor' | 'byRow' | 'byColumn'
+
 export interface EditorContextType {
   isEditable: boolean
   currentColor: string
@@ -14,6 +16,8 @@ export interface EditorContextType {
   updateColumns: (columns: number) => void
   schemaType: SchemaType
   updateSchemaType: (type: SchemaType) => void
+  mode: Mode
+  changeMode: (mode: Mode) => void
   isEraser: boolean
   erase: () => void
   paint: () => void

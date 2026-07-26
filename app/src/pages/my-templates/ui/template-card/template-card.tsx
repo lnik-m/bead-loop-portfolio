@@ -22,17 +22,18 @@ export const TemplateCard = ({ template }: Props) => {
       column
     >
       <Link to={`${routes.editTemplate}${template.id}`} state={template}>
-        <Flex
-          className="justify-center *:h-[144px]
-        bg-support-50 dark:bg-bead-loop-gray
-         rounded-t overflow-hidden"
+        <div
+          className="flex items-center justify-center
+            w-full h-[144px]
+            bg-support-50 dark:bg-bead-loop-gray
+            rounded-t overflow-hidden"
         >
           <TemplateViews
-            className="scale-[0.3]"
+            className="scale-[0.5] [&>canvas]:max-w-full [&>canvas]:max-h-full [&>canvas]:object-contain"
             schema={template.schema}
             type={template.type}
           />
-        </Flex>
+        </div>
       </Link>
       <Flex className="justify-between p-2">
         <Flex

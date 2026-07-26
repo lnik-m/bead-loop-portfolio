@@ -7,6 +7,7 @@ interface Props {
   className: string
   onClick?: (rows: number, columns: number) => void
   isEditor?: boolean
+  isProject?: boolean
 }
 
 export const TemplateViews = ({
@@ -14,13 +15,15 @@ export const TemplateViews = ({
   type,
   className,
   onClick,
-  isEditor = false
+  isEditor = false,
+  isProject = false
 }: Props) => {
   const { canvasRef, handleClick, canvasWidth, canvasHeight } =
     useTemplateViews({
       type,
       schema,
       isEditor,
+      isProject,
       onClick
     })
   return (

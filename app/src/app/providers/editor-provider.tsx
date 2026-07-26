@@ -2,7 +2,7 @@ import { type ReactNode, useCallback, useMemo, useState } from 'react'
 import type { Template } from 'core/collections'
 import type { SchemaType } from 'core/collections/template'
 import { actions } from 'actions'
-import { EditorContext } from 'features/editor'
+import { EditorContext, type Mode } from 'features/editor'
 import { useMyTemplates } from 'features/my-templates'
 
 interface Props {
@@ -15,6 +15,7 @@ export function EditorProvider({ children, template: data }: Props) {
   const [rows, setRows] = useState(data.schema.length)
   const [columns, setColumns] = useState(data.schema[0].length)
   const [schemaType, setSchemaType] = useState(template.type)
+  const [mode, setMode] = useState<Mode>('default')
 
   const { loadTemplates } = useMyTemplates()
 
@@ -101,6 +102,13 @@ export function EditorProvider({ children, template: data }: Props) {
     [updateTemplate]
   )
 
+  const changeMode = useCallback(
+    (newMode: Mode) => {
+      setMode(mode === newMode ? 'default' : newMode)
+    },
+    [mode]
+  )
+
   const [isEraser, setIsEraser] = useState(false)
 
   const [currentColor, setCurrentColor] = useState('#DF45BD')
@@ -128,6 +136,8 @@ export function EditorProvider({ children, template: data }: Props) {
       isEraser,
       erase: () => setIsEraser(true),
       paint: () => setIsEraser(false),
+      mode,
+      changeMode,
       saveTemplate,
       isSaving
     }),
@@ -143,7 +153,9 @@ export function EditorProvider({ children, template: data }: Props) {
       isEraser,
       saveTemplate,
       updateSchemaType,
-      isSaving
+      isSaving,
+      mode,
+      changeMode
     ]
   )
 

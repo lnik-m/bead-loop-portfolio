@@ -21,7 +21,7 @@ export type DeleteTemplateArgs = {
 
 export const NEW_TEMPLATE = {
   id: '',
-  title: 'New template',
+  title: '',
   type: 'loom' as SchemaType,
   schema: [
     ['', '', '', '', '', ''],
@@ -108,12 +108,12 @@ export class TemplateManager {
 
     const newId = crypto.randomUUID()
     const templateInput = [
-      ...(this.getTemplatesFromStorage() || []),
       {
         ...data,
         id: newId,
         isPublished: NEW_TEMPLATE['isPublished']
-      }
+      },
+      ...(this.getTemplatesFromStorage() || [])
     ]
     this.saveTemplatesToStorage(templateInput)
 

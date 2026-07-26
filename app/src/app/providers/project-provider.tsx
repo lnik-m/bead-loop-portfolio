@@ -3,7 +3,7 @@ import type { Project } from 'core/collections'
 import { actions } from 'actions'
 import { ProjectContext } from 'features/project'
 import { useProjects } from 'features/projects'
-import { getMaterials } from 'api/utils'
+import { getProgress } from 'api/utils'
 
 interface Props extends PropsWithChildren {
   project: Project
@@ -30,7 +30,7 @@ export function ProjectProvider({ project: data, children }: Props) {
       type: project.type,
       schema: project.schema,
       materials: project.materials,
-      progress: project.progress
+      progress: getProgress(project.schema, project.type)
     })
     await loadProjects()
     setIsSaving(false)
@@ -47,7 +47,7 @@ export function ProjectProvider({ project: data, children }: Props) {
       title: project.title,
       type: project.type,
       schema,
-      materials: getMaterials(schema),
+      materials: project.materials,
       progress: 100
     })
     await loadProjects()
