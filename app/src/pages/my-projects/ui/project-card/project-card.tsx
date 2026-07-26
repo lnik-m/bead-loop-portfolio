@@ -23,7 +23,7 @@ export const ProjectCard = ({ project }: Props) => {
       isGap
       column
     >
-      <Link to={`${routes.project}${project.id}`}>
+      <Link to={`${routes.project}${project.id}`} state={project}>
         <div
           className="justify-center *:h-[144px]
         bg-support-50 dark:bg-bead-loop-gray

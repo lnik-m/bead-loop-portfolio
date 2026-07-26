@@ -34,7 +34,7 @@ export const TemplateMenu = ({ templateId }: Props) => {
       <Modal
         opened={isModalOpened}
         onClose={closeModal}
-        title={localize('myTemplates.deleteModal.title')}
+        withCloseButton={false}
       >
         <DeleteModal templateId={templateId} closeAction={closeModal} />
       </Modal>

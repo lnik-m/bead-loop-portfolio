@@ -1,6 +1,6 @@
 import { Meta, Links, Scripts, ScrollRestoration, Outlet } from 'react-router'
 import { localStorageColorSchemeManager, MantineProvider } from '@mantine/core'
-import { I18nProvider, ThemeProvider } from 'app/providers'
+import { I18nProvider, ThemeProvider, ToastProvider } from 'app/providers'
 import { useI18n } from 'features/i18n'
 import { useTheme } from 'features/theme'
 import type { Route } from '../+types/root'
@@ -31,13 +31,12 @@ const AppLayoutContent = () => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bead Loop</title>
         <Meta />
         <Links />
       </head>
       <body>
-        <div
-          className={`${theme} bg-bead-loop-light-70 dark:bg-bead-loop-dark-20`}
-        >
+        <div className="bg-bead-loop-light-70 dark:bg-bead-loop-dark-20">
           <MantineProvider
             forceColorScheme={theme}
             colorSchemeManager={colorSchemeManager}
@@ -56,7 +55,9 @@ export default function Layout() {
   return (
     <I18nProvider>
       <ThemeProvider>
-        <AppLayoutContent />
+        <ToastProvider>
+          <AppLayoutContent />
+        </ToastProvider>
       </ThemeProvider>
     </I18nProvider>
   )

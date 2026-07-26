@@ -24,7 +24,7 @@ export const ProjectMenu = ({ projectId }: Props) => {
       <Modal
         opened={isModalOpened}
         onClose={closeModal}
-        title={localize('projects.deleteModal.title')}
+        withCloseButton={false}
       >
         <DeleteModal projectId={projectId} closeAction={closeModal} />
       </Modal>

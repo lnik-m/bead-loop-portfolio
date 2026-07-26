@@ -21,23 +21,17 @@ export function ProjectsProvider({ projects: data, children }: Props) {
 
   const addProject = useCallback(
     (templateId: Template['id']) => {
-      ;(async () => {
-        const newProject = await actions.projects.add({
-          templateId
-        })
-        newProject?.id && navigate(`${routes.project}${newProject.id}`)
-        setTimeout(async () => await loadProjects(), 1000)
-      })()
+      navigate(routes.projectCreating, {
+        state: { templateId }
+      })
     },
     [navigate]
   )
 
-  const deleteProject = useCallback((projectId: Project['id']) => {
-    ;(async () => {
-      await actions.projects.delete({ ids: [projectId] })
-      const newProjectList = await actions.projects.get.byUser()
-      setProjects([...(newProjectList || [])])
-    })()
+  const deleteProject = useCallback(async (projectId: Project['id']) => {
+    await actions.projects.delete({ ids: [projectId] })
+    const newProjectList = await actions.projects.get.byUser()
+    setProjects([...(newProjectList || [])])
   }, [])
 
   const contextValue = useMemo(

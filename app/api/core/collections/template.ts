@@ -1,10 +1,8 @@
-export type SchemaType =
-  | 'loom'
-  | 'cross'
-  | 'peyote'
-  | 'diamond'
-  | 'detailed'
-  | 'flower'
+export type SchemaType = 'loom' | 'cross' | 'peyote'
+// TODO: add views
+// | 'diamond'
+// | 'detailed'
+// | 'flower'
 
 export interface Template {
   id: string

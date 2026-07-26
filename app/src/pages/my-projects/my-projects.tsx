@@ -1,11 +1,13 @@
 import { useI18n } from 'features/i18n'
 import { useProjects } from 'features/projects'
 import { Divider, Flex } from 'shared/ui'
-import { ProjectCard } from './ui'
+import { ProjectCard, ProjectEmpty } from './ui'
 
 export const MyProjects = () => {
   const { localize } = useI18n()
   const { projects } = useProjects()
+
+  if (projects.length === 0) return <ProjectEmpty />
   return (
     <>
       <Divider label={localize('projects.tabs.current')} className="mb-2" />

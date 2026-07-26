@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
-import { Await, useLoaderData } from 'react-router'
+import { Await, useLoaderData, useLocation } from 'react-router'
 import { actions } from 'actions'
+import type { Template } from 'core/collections'
 import { Editor } from 'pages'
 import { ErrorFallback } from 'shared/ui'
 import { EditorSkeleton } from './loading'
@@ -14,9 +15,20 @@ export async function clientLoader({ params }: { params: LoaderParams }) {
   return { getTemplates }
 }
 
-export default function EditorTemplatePage() {
+function EditorTemplatePageContent() {
   const { getTemplates } = useLoaderData<typeof clientLoader>()
+  const location = useLocation()
 
+  const templateFromState = location.state as Template | null
+
+  if (templateFromState) {
+    return (
+      <Editor
+        template={templateFromState}
+        isNew={templateFromState.id === ''}
+      />
+    )
+  }
   return (
     <Suspense fallback={<EditorSkeleton />}>
       <Await
@@ -28,5 +40,14 @@ export default function EditorTemplatePage() {
         }}
       />
     </Suspense>
+  )
+}
+
+export default function EditorTemplatePage() {
+  return (
+    <>
+      <title>Editor – Bead Loop</title>
+      <EditorTemplatePageContent />
+    </>
   )
 }

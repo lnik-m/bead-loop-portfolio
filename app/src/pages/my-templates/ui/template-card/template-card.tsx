@@ -21,7 +21,7 @@ export const TemplateCard = ({ template }: Props) => {
       isGap
       column
     >
-      <Link to={`${routes.editTemplate}${template.id}`}>
+      <Link to={`${routes.editTemplate}${template.id}`} state={template}>
         <Flex
           className="justify-center *:h-[144px]
         bg-support-50 dark:bg-bead-loop-gray

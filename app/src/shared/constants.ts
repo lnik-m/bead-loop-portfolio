@@ -11,3 +11,22 @@ scaleRange.set(2.25, 'scale-[2.25]')
 scaleRange.set(2.5, 'scale-[2.5]')
 
 export const UNEXPECTED_ERROR = 'An unexpected error occurred'
+
+export const ERROR_FALLBACK_MESSAGES = {
+  en: {
+    notFound: {
+      message: '404',
+      details: 'Page Not Found'
+    },
+    base: {
+      message: 'Oops!',
+      details: 'An unexpected error occurred'
+    },
+    buttons: {
+      reload: 'Reload Page',
+      back: 'Return',
+      main: 'Go Home'
+    },
+    details: 'Error details'
+  }
+}

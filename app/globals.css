@@ -1,67 +1,71 @@
 @import "tailwindcss";
 @import "@mantine/core/styles.css";
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@theme {
+  /* Bead Loop colors */
+  --color-bead-loop-light-05: #F8F8F8;
+  --color-bead-loop-light-20: #F3F7FF;
+  --color-bead-loop-light-50: #EAEFFD;
+  --color-bead-loop-light-70: #DFE8FF;
+  --color-bead-loop-blue-light: #C6D7ED;
+  --color-bead-loop-rose: #EF86E7;
+  --color-bead-loop-lilac-05: #a287e4;
+  --color-bead-loop-lilac: #967BD7;
+  --color-bead-loop-purple: #211581;
+  --color-bead-loop-alert: #FF0202;
+  --color-bead-loop-dark: #0F0732;
+  --color-bead-loop-dark-20: #181427;
+  --color-bead-loop-black: #1E1E1E;
+  --color-bead-loop-gray: #5E5E71;
+  --color-bead-loop-gray-20: #2C2C3C;
+  --color-bead-loop-green: #6DC861;
+  --color-bead-loop-error-card: #1A1A2E;
+
+  /* Accent */
+  --color-accent-50: #FFEDFC;
+  --color-accent-100: #F9E2F5;
+  --color-accent-200: #F1D8ED;
+  --color-accent-300: #E3B7DC;
+  --color-accent-400: #F0ABDF;
+  --color-accent-500: #E67ECC;
+  --color-accent-600: #DE5ABD;
+  --color-accent-700: #D83EB2;
+  --color-accent-800: #BF2298;
+  --color-accent-900: #960C77;
+
+  /* Secondary */
+  --color-secondary-50: #efedfc;
+  --color-secondary-100: #dad7f3;
+  --color-secondary-200: #b2aaea;
+  --color-secondary-300: #887be2;
+  --color-secondary-400: #6554da;
+  --color-secondary-500: #4f3bd6;
+  --color-secondary-600: #442ed5;
+  --color-secondary-700: #3722bd;
+  --color-secondary-800: #2f1ea9;
+  --color-secondary-900: #261895;
+  --color-secondary-950: #211581;
+
+  /* Support */
+  --color-support-50: #fefefe;
+  --color-support-100: #fafafa;
+  --color-support-200: #F0EFEF;
+  --color-support-300: #9a9a9a;
+  --color-support-400: #8b8b8b;
+  --color-support-500: #848484;
+  --color-support-600: #717171;
+  --color-support-700: #656565;
+  --color-support-800: #575757;
+  --color-support-900: #1e1e1e;
+  --color-support-950: #000000;
 }
 
-/*@theme {*/
-/*  !* Bead Loop colors *!*/
-/*  --color-bead-loop-light-05: #F8F8F8;*/
-/*  --color-bead-loop-light-20: #F3F7FF;*/
-/*  --color-bead-loop-light-50: #EAEFFD;*/
-/*  --color-bead-loop-light-70: #DFE8FF;*/
-/*  --color-bead-loop-blue-light: #C6D7ED;*/
-/*  --color-bead-loop-rose: #EF86E7;*/
-/*  --color-bead-loop-lilac-05: #a287e4;*/
-/*  --color-bead-loop-lilac: #967BD7;*/
-/*  --color-bead-loop-purple: #211581;*/
-/*  --color-bead-loop-alert: #FF0202;*/
-/*  --color-bead-loop-dark: #0F0732;*/
-/*  --color-bead-loop-dark-20: #181427;*/
-/*  --color-bead-loop-black: #1E1E1E;*/
-/*  --color-bead-loop-gray: #5E5E71;*/
-/*  --color-bead-loop-gray-20: #2C2C3C;*/
-/*  --color-bead-loop-green: #6DC861;*/
+@custom-variant dark (&:where(.dark, .dark *));
 
-/*  !* Accent *!*/
-/*  --color-accent-50: #FFEDFC;*/
-/*  --color-accent-100: #F9E2F5;*/
-/*  --color-accent-200: #F1D8ED;*/
-/*  --color-accent-300: #E3B7DC;*/
-/*  --color-accent-400: #F0ABDF;*/
-/*  --color-accent-500: #E67ECC;*/
-/*  --color-accent-600: #DE5ABD;*/
-/*  --color-accent-700: #D83EB2;*/
-/*  --color-accent-800: #BF2298;*/
-/*  --color-accent-900: #960C77;*/
+html {
+  background: var(--color-bead-loop-light-70);
 
-/*  !* Secondary *!*/
-/*  --color-secondary-50: #efedfc;*/
-/*  --color-secondary-100: #dad7f3;*/
-/*  --color-secondary-200: #b2aaea;*/
-/*  --color-secondary-300: #887be2;*/
-/*  --color-secondary-400: #6554da;*/
-/*  --color-secondary-500: #4f3bd6;*/
-/*  --color-secondary-600: #442ed5;*/
-/*  --color-secondary-700: #3722bd;*/
-/*  --color-secondary-800: #2f1ea9;*/
-/*  --color-secondary-900: #261895;*/
-/*  --color-secondary-950: #211581;*/
-
-/*  !* Support *!*/
-/*  --color-support-50: #fefefe;*/
-/*  --color-support-100: #fafafa;*/
-/*  --color-support-200: #F0EFEF;*/
-/*  --color-support-300: #9a9a9a;*/
-/*  --color-support-400: #8b8b8b;*/
-/*  --color-support-500: #848484;*/
-/*  --color-support-600: #717171;*/
-/*  --color-support-700: #656565;*/
-/*  --color-support-800: #575757;*/
-/*  --color-support-900: #1e1e1e;*/
-/*  --color-support-950: #000000;*/
-/*}*/
+  &.dark {
+    background: var(--color-bead-loop-dark-20);
+  }
+}

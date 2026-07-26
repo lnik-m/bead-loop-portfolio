@@ -38,9 +38,9 @@ export const EditorSettings = ({
   } = useEditor()
   const schemaTypes: { value: string; label: string }[] = [
     'loom',
-    'peyote'
+    'peyote',
+    'cross'
     // TODO: add views
-    // 'cross',
     // 'flower',
     // 'diamond',
     // 'detailed'
@@ -53,6 +53,8 @@ export const EditorSettings = ({
   })
   const focusTrapRef = useFocusTrap(true)
   const [error, setError] = useState('')
+  const [displayedColumns, setDisplayedColumns] = useState(columns)
+  const [displayedRows, setDisplayedRows] = useState(rows)
   return (
     <Flex
       column
@@ -89,16 +91,18 @@ export const EditorSettings = ({
             min={1}
             max={50}
             label={localize('editor.labels.rows')}
-            value={rows}
-            onChange={v => updateRows(+v)}
+            value={displayedRows}
+            onChange={v => setDisplayedRows(+v)}
+            onBlur={() => updateRows(displayedRows)}
           />
           <NumberInput
             disabled={!isEditable}
             min={1}
             max={50}
             label={localize('editor.labels.columns')}
-            value={columns}
-            onChange={v => updateColumns(+v)}
+            value={displayedColumns}
+            onChange={v => setDisplayedColumns(+v)}
+            onBlur={() => updateColumns(displayedColumns)}
           />
         </Flex>
       </Flex>

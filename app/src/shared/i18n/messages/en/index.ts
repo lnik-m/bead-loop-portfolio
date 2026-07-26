@@ -3,6 +3,7 @@ import editorEN from './editor'
 import myTemplatesEN from './myTemplates'
 import projectsEN from './projects'
 
+// TODO add other langs
 const messages = {
   dashboard: dashboardEN,
   editor: editorEN,

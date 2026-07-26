@@ -1,9 +1,10 @@
+import { NEW_TEMPLATE } from 'core/managers/template'
+import { routes } from 'app/routes'
 import { AddButton } from 'widgets'
 import { useI18n } from 'features/i18n'
 import { useMyTemplates } from 'features/my-templates'
 import { Flex } from 'shared/ui'
 import { TemplateCard } from './ui'
-import { routes } from 'app/routes'
 
 export const MyTemplates = () => {
   const { localize } = useI18n()
@@ -13,6 +14,7 @@ export const MyTemplates = () => {
       <Flex className="max-w-full flex-wrap gap-3" isGap>
         <AddButton
           to={`${routes.editTemplate}new`}
+          state={NEW_TEMPLATE}
           label={localize('myTemplates.buttons.newTemplate')}
         />
         {myTemplates?.map(template => (
