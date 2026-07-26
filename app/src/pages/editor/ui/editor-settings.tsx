@@ -38,9 +38,9 @@ export const EditorSettings = ({
   } = useEditor()
   const schemaTypes: { value: string; label: string }[] = [
     'loom',
-    'peyote'
+    'peyote',
+    'cross'
     // TODO: add views
-    // 'cross',
     // 'flower',
     // 'diamond',
     // 'detailed'

@@ -60,12 +60,14 @@ export function EditorProvider({ children, template: data }: Props) {
       if (schema.length > rows) {
         schema.length = rows
       } else {
-        const column = schema[0].map(() => '')
-        const add: string[][] = Array(rows - schema.length).fill(column)
-        schema.push(...add)
+        const cols = schema[0]?.length || 0
+        const newRows: string[][] = []
+        for (let i = 0; i < rows - schema.length; i++) {
+          newRows.push(Array(cols).fill(''))
+        }
+        schema.push(...newRows)
       }
-
-      setTemplate({ ...template, ...schema })
+      setTemplate({ ...template, schema })
     },
     [template]
   )

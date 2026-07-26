@@ -1,33 +1,42 @@
 import { IconCheck } from '@tabler/icons-react'
 
-interface Props {
+interface BeadProps {
   isEditor: boolean
   color?: string
   isBeaded?: boolean
-  onClick?: () => void
+  'data-row'?: number
+  'data-col'?: number
 }
 
-export const Bead = ({ isEditor, color, isBeaded, onClick }: Props) => {
+export const Bead = ({
+  isEditor,
+  color,
+  isBeaded,
+  'data-row': row,
+  'data-col': col,
+  ...props
+}: BeadProps) => {
   return (
     <div
-      onClick={() => {
-        if (!isEditor && !color) return
-        if (!onClick) return
-        onClick()
-      }}
+      data-row={row}
+      data-col={col}
+      {...props}
       className={`
-      ${isEditor || color ? 'shadow-lg' : ''}
-      relative w-[30px] h-[30px] rounded-full ${
-        isEditor && 'border-[1px] border-secondary-500'
-      }`}
-      style={{ background: color, borderColor: color }}
+        relative w-[30px] h-[30px] rounded-full 
+        ${isEditor || color ? 'shadow-lg' : ''} 
+        ${isEditor && 'border-[1px] border-secondary-500'}
+      `}
+      style={{
+        background: color || 'transparent',
+        borderColor: color || undefined
+      }}
     >
       {isBeaded && (
         <>
-          <div className="absolute w-[30px] h-[30px] rounded-full bg-secondary-950 opacity-60" />
+          <div className="absolute inset-0 rounded-full bg-secondary-950 opacity-60" />
           <IconCheck
             size={24}
-            className="absolute text-secondary-50 mt-[3px] ml-[3px]"
+            className="absolute text-secondary-50 inset-0 m-auto"
           />
         </>
       )}

@@ -1,6 +1,5 @@
 import type { Project, Template } from 'core/collections'
-import { LoomTemplateView } from './loom'
-import { PeyoteTemplateView } from './peyote'
+import { useTemplateViews } from './use-template-views'
 
 interface Props {
   schema: Template['schema'] | Project['schema']
@@ -17,16 +16,27 @@ export const TemplateViews = ({
   onClick,
   isEditor = false
 }: Props) => {
-  const props = {
-    schema,
-    className,
-    onClick,
-    isEditor
-  }
+  const { canvasRef, handleClick, canvasWidth, canvasHeight } =
+    useTemplateViews({
+      type,
+      schema,
+      isEditor,
+      onClick
+    })
   return (
-    <>
-      {type === 'loom' && <LoomTemplateView {...props} />}
-      {type === 'peyote' && <PeyoteTemplateView {...props} />}
-    </>
+    <div className={`overflow-auto ${className}`}>
+      <canvas
+        ref={canvasRef}
+        width={canvasWidth}
+        height={canvasHeight}
+        style={{
+          width: canvasWidth,
+          height: canvasHeight,
+          display: 'block',
+          touchAction: 'none'
+        }}
+        onClick={handleClick}
+      />
+    </div>
   )
 }
