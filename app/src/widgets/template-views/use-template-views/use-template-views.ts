@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, useMemo } from 'react'
 import type { Project, Template } from 'core/collections'
-import { GAP_SIZE, EDITOR_CELL_SIZE, VIEW_CELL_SIZE } from './constants'
+import { GAP_SIZE, CELL_SIZE, VIEW_CELL_SIZE } from './constants'
 import { POSITION_STRATEGIES } from './positions'
 import {
   renderEmptyBead,
@@ -15,6 +15,7 @@ import type { TemplateType } from './types'
 export interface Props {
   schema: Template['schema'] | Project['schema']
   isEditor: boolean
+  isProject: boolean
   type: TemplateType
   onClick?: (rows: number, columns: number) => void
 }
@@ -22,10 +23,11 @@ export interface Props {
 export const useTemplateViews = ({
   schema,
   isEditor,
+  isProject,
   type,
   onClick
 }: Props) => {
-  const cellSize = isEditor ? EDITOR_CELL_SIZE : VIEW_CELL_SIZE
+  const cellSize = isEditor || isProject ? CELL_SIZE : VIEW_CELL_SIZE
   const gap = GAP_SIZE
 
   const canvasRef = useRef<HTMLCanvasElement>(null)

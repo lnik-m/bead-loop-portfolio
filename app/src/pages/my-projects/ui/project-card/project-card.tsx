@@ -14,24 +14,38 @@ interface Props {
 export const ProjectCard = ({ project }: Props) => {
   const { localize } = useI18n()
   const { schema, type, title, progress } = project
+
   return (
     <Flex
       className="w-[268px] h-[208px] gap-0
-      rounded-md border-[4px]
-    bg-bead-loop-light-50 dark:bg-bead-loop-gray-20
-    border-bead-loop-light-50 dark:border-bead-loop-gray-20"
+        rounded-md border-[4px]
+        bg-bead-loop-light-50 dark:bg-bead-loop-gray-20
+        border-bead-loop-light-50 dark:border-bead-loop-gray-20
+        overflow-hidden"
       isGap
       column
     >
-      <Link to={`${routes.project}${project.id}`} state={project}>
+      <Link
+        to={`${routes.project}${project.id}`}
+        state={project}
+        className="flex-1"
+      >
         <div
-          className="justify-center *:h-[144px]
-        bg-support-50 dark:bg-bead-loop-gray
-        rounded-t overflow-hidden"
+          className="relative w-full h-[144px]
+            bg-support-50 dark:bg-bead-loop-gray
+            flex items-center justify-center
+            overflow-hidden"
         >
-          <TemplateViews className="scale-[0.3]" schema={schema} type={type} />
+          <div className="flex items-center justify-center w-full h-full">
+            <TemplateViews
+              className="scale-[0.5] [&>div]:flex [&>div]:items-center [&>div]:justify-center"
+              schema={schema}
+              type={type}
+            />
+          </div>
         </div>
       </Link>
+
       <Flex className="justify-between p-2 relative">
         <ProjectProgress
           progress={progress}

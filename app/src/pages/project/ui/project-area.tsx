@@ -45,6 +45,7 @@ export const ProjectArea = () => {
         <Draggable nodeRef={nodeRef} disabled={!isMoving}>
           <div ref={nodeRef}>
             <TemplateViews
+              isProject
               schema={schema}
               type={type}
               className={`${scale} ${rotate} ${
