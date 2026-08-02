@@ -62,7 +62,7 @@
 
 ## 📊 Lighthouse Performance
 
-Bead Loop achieves near-perfect scores across all Core Web Vitals:
+Bead Loop achieves near-perfect scores across all Core Web Vitals on [desktop](https://pagespeed.web.dev/analysis/https-bead-loop-netlify-app/0dokmyqio5?form_factor=desktop):
 
 | Metric | Score | Status |
 | :--- | :--- | :--- |
