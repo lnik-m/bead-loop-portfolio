@@ -10,6 +10,7 @@
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite)](https://vitejs.dev)
 [![Mantine](https://img.shields.io/badge/Mantine-7-339AF0?logo=mantine)](https://mantine.dev)
 [![Vitest](https://img.shields.io/badge/Vitest-2.0-6E9F18?logo=vitest)](https://vitest.dev)
+[![Lighthouse Performance](https://img.shields.io/badge/Performance-98%2F100-brightgreen?logo=lighthouse)](https://pagespeed.web.dev/analysis/https-bead-loop-netlify-app/0dokmyqio5?form_factor=desktop)
 
 ---
 
@@ -58,6 +59,22 @@
 | **Language**   | TypeScript 5.9                          |
 
 ---
+
+## 📊 Lighthouse Performance
+
+Bead Loop achieves near-perfect scores across all Core Web Vitals:
+
+| Metric | Score | Status |
+| :--- | :--- | :--- |
+| **Performance** | 98/100 | ✅ Excellent |
+| **First Contentful Paint** | 0.5 s | ✅ Excellent |
+| **Largest Contentful Paint** | 0.6 s | ✅ Excellent |
+| **Total Blocking Time** | 0 ms | ✅ Excellent |
+| **Cumulative Layout Shift** | 0.013 | ✅ Excellent |
+| **Speed Index** | 1.5 s | ✅ Excellent |
+
+---
+
 
 ## 🚀 Live Demo
 **[bhttps://bead-loop.netlify.app](https://bead-loop.netlify.app)**
