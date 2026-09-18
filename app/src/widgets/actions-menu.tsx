@@ -36,9 +36,10 @@ export const ActionsMenu = () => {
       <ActionIcon onClick={zoomIn} disabled={scale === maxScale}>
         <IconPlus />
       </ActionIcon>
-      <ActionIcon onClick={rotateTemplate}>
-        <IconRotateClockwise2 />
-      </ActionIcon>
+      {/*TODO fix rotate*/}
+      {/*<ActionIcon onClick={rotateTemplate}>*/}
+      {/*  <IconRotateClockwise2 />*/}
+      {/*</ActionIcon>*/}
     </Flex>
   )
 }

@@ -46,7 +46,7 @@ function EditorTemplatePageContent() {
 export default function EditorTemplatePage() {
   return (
     <>
-      <title>Editor – Bead Loop</title>
+      <title>Bead Loop</title>
       <EditorTemplatePageContent />
     </>
   )

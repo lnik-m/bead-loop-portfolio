@@ -28,25 +28,24 @@ const AppLayoutContent = () => {
   const { theme } = useTheme()
   return (
     <html lang={locale} className={theme}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Bead Loop</title>
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <div className="bg-bead-loop-light-70 dark:bg-bead-loop-dark-20">
-          <MantineProvider
-            forceColorScheme={theme}
-            colorSchemeManager={colorSchemeManager}
-          >
-            <Outlet />
-          </MantineProvider>
-        </div>
-        <ScrollRestoration />
-        <Scripts />
-      </body>
+    <head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <Meta />
+      <Links />
+    </head>
+    <body>
+    <div className="bg-bead-loop-light-70 dark:bg-bead-loop-dark-20">
+      <MantineProvider
+        forceColorScheme={theme}
+        colorSchemeManager={colorSchemeManager}
+      >
+        <Outlet />
+      </MantineProvider>
+    </div>
+    <ScrollRestoration />
+    <Scripts />
+    </body>
     </html>
   )
 }
