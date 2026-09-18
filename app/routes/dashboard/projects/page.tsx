@@ -7,7 +7,7 @@ const MyProjects = lazy(
 
 export default function MyProjectsPage() {
   useEffect(() => {
-    document.title = 'Projects – Bead Loop'
+    document.title = 'Bead Loop'
   }, [])
   return (
     <Suspense fallback={<DashboardSkeleton hideHeader />}>

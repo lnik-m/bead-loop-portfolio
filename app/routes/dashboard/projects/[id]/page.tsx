@@ -40,7 +40,7 @@ function ProjectPageContent() {
 export default function ProjectPage() {
   return (
     <>
-      <title>Project – Bead Loop</title>
+      <title>Bead Loop</title>
       <ProjectPageContent />
     </>
   )
