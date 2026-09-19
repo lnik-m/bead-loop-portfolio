@@ -19,7 +19,6 @@
     "@tabler/icons-react": "^3.44.0",
     "html-to-image": "^1.11.13",
     "isbot": "^5.1.36",
-    "jiaguozhen-vite-plugin-meta-inject": "^0.1.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-draggable": "^4.5.0",

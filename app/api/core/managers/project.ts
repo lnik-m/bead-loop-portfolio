@@ -105,7 +105,9 @@ export class ProjectManager {
     const projectInput = [
       {
         id: newId,
-        title: `${NEW_PROJECT_TITLE[lang] || 'New Project'} – ${template.title}`,
+        title: `${NEW_PROJECT_TITLE[lang] || 'New Project'} – ${
+          template.title
+        }`,
         type: template.type,
         schema,
         materials,

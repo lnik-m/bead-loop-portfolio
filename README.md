@@ -64,17 +64,17 @@
 
 Bead Loop achieves near-perfect scores across all Core Web Vitals on [desktop](https://pagespeed.web.dev/analysis/https-bead-loop-netlify-app/0dokmyqio5?form_factor=desktop):
 
-| Metric | Score | Status |
-| :--- | :--- | :--- |
-| **Performance** | 98/100 | ✅ Excellent |
-| **First Contentful Paint** | 0.5 s | ✅ Excellent |
-| **Largest Contentful Paint** | 0.6 s | ✅ Excellent |
-| **Total Blocking Time** | 0 ms | ✅ Excellent |
-| **Cumulative Layout Shift** | 0.013 | ✅ Excellent |
-| **Speed Index** | 1.5 s | ✅ Excellent |
+| Metric                       | Score  | Status       |
+| :--------------------------- | :----- | :----------- |
+| **Performance**              | 98/100 | ✅ Excellent |
+| **First Contentful Paint**   | 0.5 s  | ✅ Excellent |
+| **Largest Contentful Paint** | 0.6 s  | ✅ Excellent |
+| **Total Blocking Time**      | 0 ms   | ✅ Excellent |
+| **Cumulative Layout Shift**  | 0.013  | ✅ Excellent |
+| **Speed Index**              | 1.5 s  | ✅ Excellent |
 
 ---
 
-
 ## 🚀 Live Demo
+
 **[bhttps://bead-loop.netlify.app](https://bead-loop.netlify.app)**
